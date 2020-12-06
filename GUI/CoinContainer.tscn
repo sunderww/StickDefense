@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/coin.png" type="Texture" id=1]
+[ext_resource path="res://GUI/coin_container.gd" type="Script" id=2]
+
+[node name="CoinContainer" type="HBoxContainer"]
+margin_right = 1023.0
+margin_bottom = 40.0
+custom_constants/separation = 4
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 4.0
+margin_right = 26.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="CoinCount" type="Label" parent="."]
+margin_left = 30.0
+margin_top = 13.0
+margin_right = 46.0
+margin_bottom = 27.0
+text = "10"

@@ -1,0 +1,64 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "BaseEntity",
+"class": "BaseAlly",
+"language": "GDScript",
+"path": "res://Entities/base_ally.gd"
+}, {
+"base": "BaseEntity",
+"class": "BaseEnemy",
+"language": "GDScript",
+"path": "res://Entities/base_enemy.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "BaseEntity",
+"language": "GDScript",
+"path": "res://Entities/base_entity.gd"
+}, {
+"base": "Reference",
+"class": "Purchase",
+"language": "GDScript",
+"path": "res://purchase.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://Entities/state.gd"
+}, {
+"base": "Node",
+"class": "Stats",
+"language": "GDScript",
+"path": "res://Entities/stats.gd"
+} ]
+_global_script_class_icons={
+"BaseAlly": "",
+"BaseEnemy": "",
+"BaseEntity": "",
+"Purchase": "",
+"State": "",
+"Stats": ""
+}
+
+[application]
+
+config/name="StickDefense"
+run/main_scene="res://Main.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+PurchaseManager="*res://purchase_manager.gd"
+PlayerVariables="*res://player_variables.gd"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

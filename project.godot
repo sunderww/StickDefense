@@ -9,20 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "BaseEntity",
-"class": "BaseAlly",
-"language": "GDScript",
-"path": "res://Entities/base_ally.gd"
-}, {
-"base": "BaseEntity",
-"class": "BaseEnemy",
-"language": "GDScript",
-"path": "res://Entities/base_enemy.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "BaseEntity",
 "language": "GDScript",
 "path": "res://Entities/base_entity.gd"
+}, {
+"base": "Area2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://Entities/Infantry/bullet.gd"
+}, {
+"base": "Infantry",
+"class": "EnemyInfantry",
+"language": "GDScript",
+"path": "res://Entities/Infantry/enemy_infantry.gd"
+}, {
+"base": "BaseEntity",
+"class": "Infantry",
+"language": "GDScript",
+"path": "res://Entities/Infantry/infantry.gd"
 }, {
 "base": "Reference",
 "class": "Purchase",
@@ -33,19 +38,14 @@ _global_script_classes=[ {
 "class": "State",
 "language": "GDScript",
 "path": "res://Entities/state.gd"
-}, {
-"base": "Node",
-"class": "Stats",
-"language": "GDScript",
-"path": "res://Entities/stats.gd"
 } ]
 _global_script_class_icons={
-"BaseAlly": "",
-"BaseEnemy": "",
 "BaseEntity": "",
+"Bullet": "",
+"EnemyInfantry": "",
+"Infantry": "",
 "Purchase": "",
-"State": "",
-"Stats": ""
+"State": ""
 }
 
 [application]
@@ -58,7 +58,10 @@ config/icon="res://icon.png"
 
 PurchaseManager="*res://purchase_manager.gd"
 PlayerVariables="*res://player_variables.gd"
+DebugService="*res://Misc/debug_service.gd"
 
 [rendering]
 
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
 environment/default_environment="res://default_env.tres"

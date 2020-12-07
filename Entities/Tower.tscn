@@ -1,23 +1,30 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Entities/tower.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Tower.gd" type="Script" id=1]
 
-[node name="Tower" type="Polygon2D" groups=[
+[node name="Tower" type="Area2D" groups=[
+"allies",
+]]
+script = ExtResource( 1 )
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = -34.7689
+margin_top = -284.268
+margin_right = 27.2311
+margin_bottom = -270.268
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tower" type="Polygon2D" parent="." groups=[
 "allies",
 ]]
 position = Vector2( 0.922531, -0.279449 )
 color = Color( 0.407843, 0.376471, 0.376471, 1 )
 polygon = PoolVector2Array( 13.6223, 30.9407, 13.0771, -235.665, -16.8775, -235.433, -17.5853, -202.556, -36.0368, -204.771, -36.0368, -235.769, -58.9141, -236.005, -59.6546, -203.294, -80.3202, -204.032, -82.5343, -237.245, -107.628, -236.507, -108.366, 32.1457 )
-script = ExtResource( 1 )
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-margin_left = -35.6914
-margin_top = -283.989
-margin_right = 26.3086
-margin_bottom = -269.989
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Door" type="Polygon2D" parent="."]
+[node name="Door" type="Polygon2D" parent="Tower"]
 polygon = PoolVector2Array( 1.21809, 31.6402, 1.21809, -27.8621, -15.5894, -28.0553, -15.5894, 31.6402 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 14.6182, 30.8131, 14.0983, -235.663, -15.6092, -235.539, -16.2281, -203.108, -34.919, -205.584, -35.0428, -235.91, -57.7442, -236.207, -58.7345, -203.405, -80.52, -204.396, -81.7578, -238.064, -106.786, -236.579, -107.43, 31.6796 )

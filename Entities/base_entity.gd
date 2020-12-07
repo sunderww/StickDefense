@@ -5,32 +5,34 @@ class_name BaseEntity
 
 var state: State
 
-var stats = Stats.new()
+export var life: float = 100
+export var damage: float = 35
+export(Array, float) var resistances = []
 
-const RANGE_PX = 30
-const MOVE_SPEED_PX = 4000
+export (int) var RANGE_PX = 30
+export (int) var MOVE_SPEED_PX = 4000
 
 var velocity = Vector2()
 var direction: int = 1 # -1 for left ; 1 for right
 var target: Node2D = null
-
-var can_attack = true
 
 export (bool) var is_enemy = false
 var is_dead: bool = false # to avoid calling die() multiple times
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	($AttackTimer as Timer).wait_time = stats.attack_delay
 	var group_name = "enemies" if is_enemy else "allies"
 	add_to_group(group_name)
 
 func _process(delta: float) -> void:
-	$ProgressBar.value = stats.life
+	$ProgressBar.value = life
 	state._process(delta)
 	
 
 func _physics_process(delta: float) -> void:
+	velocity = Vector2.ZERO
+	velocity.y = 100 # Apply gravity
+	
 	reload_closest_target()
 	state._fixed_process(delta)
 
@@ -74,8 +76,9 @@ func attack_target() -> void:
 
 
 func suffer_attack(base_damage: float) -> void:
-	stats.life -= base_damage
-	if stats.life <= 0 and not is_dead:
+	DebugService.silly("%s took %f dmgs" % [name, base_damage])
+	life -= base_damage
+	if life <= 0 and not is_dead:
 		die()
 
 func die() -> void:
@@ -89,12 +92,8 @@ func set_direction(left: bool) -> void:
 
 func set_direction_towards_target() -> void:
 	if not target:
+		set_direction(is_enemy) # Default to left if enemy else right
 		direction = 0
-		($AnimatedSprite as AnimatedSprite).flip_h = is_enemy
 		return
 	
 	set_direction(target.global_position.x < global_position.x)
-
-
-func _on_AttackTimer_timeout():
-	can_attack = true

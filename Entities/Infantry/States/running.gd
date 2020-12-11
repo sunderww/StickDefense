@@ -32,4 +32,3 @@ func _fixed_process(delta: float) -> void:
 	parent.velocity.x *= parent.direction
 	
 	parent.velocity.x *= delta
-	parent.velocity = parent.move_and_slide(parent.velocity)

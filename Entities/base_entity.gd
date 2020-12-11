@@ -16,6 +16,8 @@ var velocity = Vector2()
 var direction: int = 1 # -1 for left ; 1 for right
 var target: Node2D = null
 
+export (bool) var has_gravity = true
+export (bool) var can_shoot_up = false
 export (bool) var is_enemy = false
 var is_dead: bool = false # to avoid calling die() multiple times
 
@@ -23,6 +25,7 @@ var is_dead: bool = false # to avoid calling die() multiple times
 func _ready() -> void:
 	var group_name = "enemies" if is_enemy else "allies"
 	add_to_group(group_name)
+	add_to_group("unit")
 
 func _process(delta: float) -> void:
 	$ProgressBar.value = life
@@ -31,10 +34,15 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	velocity = Vector2.ZERO
-	velocity.y = 100 # Apply gravity
+
+	# Apply gravity	
+	if has_gravity:
+		velocity.y = 100
 	
 	reload_closest_target()
 	state._fixed_process(delta)
+
+	velocity = move_and_slide(velocity)
 
 
 #func next_ally() -> Node2D:
@@ -62,6 +70,8 @@ func closest_target() -> Node2D:
 
 	var nearest = targets[0]
 	for t in targets:
+		if t.is_in_group("air") and not can_shoot_up:
+			continue
 		if t.global_position.distance_to(global_position) < nearest.global_position.distance_to(global_position):
 			nearest = t
 	
@@ -75,8 +85,9 @@ func attack_target() -> void:
 	assert(false)
 
 
-func suffer_attack(base_damage: float) -> void:
-	DebugService.silly("%s took %f dmgs" % [name, base_damage])
+func suffer_attack(base_damage: int) -> void:
+	# Spawn a visual effect here
+	DebugService.silly("%s took %d dmgs" % [name, base_damage])
 	life -= base_damage
 	if life <= 0 and not is_dead:
 		die()

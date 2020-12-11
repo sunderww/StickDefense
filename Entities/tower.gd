@@ -1,4 +1,4 @@
-extends Area2D
+extends StaticBody2D
 
 
 signal destroyed
@@ -17,7 +17,8 @@ func _process(_delta):
 	var life_percentage = float(life) / float(max_life) * 100.0
 	$ProgressBar.value = life_percentage
 	
-func suffer_attack(base_damage: float) -> void:
+func suffer_attack(base_damage: int) -> void:
+	DebugService.debug("Tower suffered %d damage" % base_damage)
 	life -= base_damage
 	if life <= 0:
 		emit_signal("destroyed")

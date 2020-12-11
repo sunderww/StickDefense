@@ -6,10 +6,13 @@ export var speed: int = 750
 var damage: int = 10
 var target_group: String = "enemies"
 
+func _init() -> void:
+	name = "Bullet"
+
 func _physics_process(delta: float) -> void:
 	position += transform.x * speed * delta
 
-func _on_Bullet_body_entered(body):
+func _on_Bullet_body_entered(body: PhysicsBody2D) -> void:
 	if body.is_in_group(target_group):
 		if body.has_method("suffer_attack"):
 			body.suffer_attack(damage)

@@ -211,7 +211,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=37]
-extents = Vector2( 4.44257, 26.2072 )
+extents = Vector2( 8, 26.207 )
 
 [node name="EnemyInfantry" type="KinematicBody2D"]
 collision_mask = 0
@@ -222,6 +222,7 @@ __meta__ = {
 damage = 15.0
 resistances = [ 0.0, 0.0, 0.0 ]
 is_enemy = true
+bullet_damage = 9
 bullets = 8
 
 [node name="ProgressBar" type="ProgressBar" parent="."]

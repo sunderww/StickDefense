@@ -6,6 +6,7 @@ signal spawn_object(node)
 
 const Idle = preload("res://Entities/Infantry/States/idle.gd")
 
+export var bullet_damage: int = 10
 export var bullets: int = 6
 export var SHOOT_RANGE_PX: int = 450
 
@@ -42,5 +43,5 @@ func set_direction(left: bool) -> void:
 
 func shoot(bullet: Bullet) -> void:
 	bullets -= 1
-	bullet.damage = 10
+	bullet.damage = bullet_damage
 	emit_signal("spawn_object", bullet)

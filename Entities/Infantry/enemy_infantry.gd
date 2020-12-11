@@ -14,5 +14,6 @@ func die() -> void:
 	emit_signal("enemy_died", coin_gain)
 
 func _ready() -> void:
-	self.name = "EInfantry"
+	name = "EInfantry"
+	set_direction(true)
 

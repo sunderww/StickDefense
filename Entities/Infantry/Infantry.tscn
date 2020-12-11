@@ -211,12 +211,15 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=37]
-extents = Vector2( 4.44257, 26.2072 )
+extents = Vector2( 8, 26.207 )
 
 [node name="Infantry" type="KinematicBody2D"]
 collision_mask = 0
 script = ExtResource( 4 )
+life = 120.0
+damage = 30.0
 RANGE_PX = 25
+bullet_damage = 12
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 margin_left = -17.3203

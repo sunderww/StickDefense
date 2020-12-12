@@ -6,6 +6,9 @@ signal spawn_object(node)
 
 const Idle = preload("res://Entities/Infantry/States/idle.gd")
 
+onready var shell_particles = $Particles2D
+onready var shell_particles2 = $Particles2D2
+
 export var bullet_damage: int = 10
 export var bullets: int = 6
 export var SHOOT_RANGE_PX: int = 450
@@ -49,4 +52,10 @@ func set_direction(left: bool) -> void:
 func shoot(bullet: Bullet) -> void:
 	bullets -= 1
 	bullet.damage = bullet_damage
+
+	# Alternate between 2 particles in case one is not finished
+	if shell_particles.emitting:
+		shell_particles2.emitting = true
+	else:
+		shell_particles.emitting = true
 	emit_signal("spawn_object", bullet)

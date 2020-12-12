@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Entities/Infantry/Infantry_Attacking.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Infantry/enemy_infantry.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Entities/Infantry/Infantry_Shooting.png" type="Texture" id=4]
 [ext_resource path="res://Entities/Infantry/Infantry_Walking.png" type="Texture" id=5]
 [ext_resource path="res://Entities/Infantry/Infantry_Idle.png" type="Texture" id=6]
+[ext_resource path="res://Entities/Infantry/Shell.png" type="Texture" id=7]
+[ext_resource path="res://Effects/Tweening/scale_effect.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 8, 26.207 )
@@ -236,7 +238,7 @@ animations = [ {
 
 [sub_resource type="Animation" id=40]
 resource_name = "hurt"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:material:shader_param/white_progress")
 tracks/0/interp = 2
@@ -244,11 +246,31 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 0.574349, 3.24901 ),
 "update": 0,
 "values": [ 1.0, 0.0 ]
 }
+
+[sub_resource type="Curve" id=80]
+min_value = 0.99
+max_value = 2.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1.94741 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=81]
+curve = SubResource( 80 )
+
+[sub_resource type="ParticlesMaterial" id=82]
+flag_disable_z = true
+direction = Vector3( -1, -1, 0 )
+spread = 35.7
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 50.0
+angular_velocity = 100.0
+angular_velocity_random = 0.2
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 81 )
 
 [node name="EnemyInfantry" type="KinematicBody2D"]
 collision_mask = 0
@@ -297,3 +319,22 @@ playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hurt = SubResource( 40 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 7.07367, -17.7852 )
+emitting = false
+amount = 1
+one_shot = true
+process_material = SubResource( 82 )
+texture = ExtResource( 7 )
+
+[node name="ScaleEffect" type="Tween" parent="."]
+script = ExtResource( 8 )
+
+[node name="Particles2D2" type="Particles2D" parent="."]
+position = Vector2( 7.07367, -17.7852 )
+emitting = false
+amount = 1
+one_shot = true
+process_material = SubResource( 82 )
+texture = ExtResource( 7 )

@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Misc/purchase.gd"
 }, {
+"base": "AudioStreamPlayer",
+"class": "RandomizedStreamPlayer",
+"language": "GDScript",
+"path": "res://Effects/Sound/randomized_stream_player.gd"
+}, {
 "base": "Tween",
 "class": "ScaleEffect",
 "language": "GDScript",
@@ -50,6 +55,7 @@ _global_script_class_icons={
 "EnemyInfantry": "",
 "Infantry": "",
 "Purchase": "",
+"RandomizedStreamPlayer": "",
 "ScaleEffect": "",
 "State": ""
 }

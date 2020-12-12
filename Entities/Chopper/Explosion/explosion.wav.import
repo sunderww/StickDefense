@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/explosion.wav-b6c5a60d0ffb919aa33556bb628de92c.sample"
+
+[deps]
+
+source_file="res://Entities/Chopper/Explosion/explosion.wav"
+dest_files=[ "res://.import/explosion.wav-b6c5a60d0ffb919aa33556bb628de92c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

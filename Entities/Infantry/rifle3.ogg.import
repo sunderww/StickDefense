@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/rifle3.ogg-5401f70694d970d66a531dc99759426d.oggstr"
+
+[deps]
+
+source_file="res://Entities/Infantry/rifle3.ogg"
+dest_files=[ "res://.import/rifle3.ogg-5401f70694d970d66a531dc99759426d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -53,9 +53,12 @@ func shoot(bullet: Bullet) -> void:
 	bullets -= 1
 	bullet.damage = bullet_damage
 
+	$RandomizedStreamPlayer.play_random()
+
 	# Alternate between 2 particles in case one is not finished
 	if shell_particles.emitting:
 		shell_particles2.emitting = true
 	else:
 		shell_particles.emitting = true
+
 	emit_signal("spawn_object", bullet)

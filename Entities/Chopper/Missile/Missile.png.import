@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Missile.png-301d592ba11e8150d517eb0e1fae084f.stex"
+path="res://.import/Missile.png-bbbc98d97695575e87b10dbf0b33241c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Chopper/Missile.png"
-dest_files=[ "res://.import/Missile.png-301d592ba11e8150d517eb0e1fae084f.stex" ]
+source_file="res://Entities/Chopper/Missile/Missile.png"
+dest_files=[ "res://.import/Missile.png-bbbc98d97695575e87b10dbf0b33241c.stex" ]
 
 [params]
 

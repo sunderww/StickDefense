@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Tower.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Common/Camera/ShakableCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Common/frame_freezer.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 723.126, 81.5747 )
@@ -49,6 +51,15 @@ position = Vector2( 52.8605, 98.7527 )
 position = Vector2( 919.201, 427.983 )
 
 [node name="Objects" type="Node2D" parent="."]
+
+[node name="ShakableCamera" parent="." instance=ExtResource( 3 )]
+position = Vector2( 510, 300 )
+current = true
+
+[node name="FrameFreezer" type="Node2D" parent="."]
+position = Vector2( 510, 300 )
+script = ExtResource( 5 )
+delay_ms = 90
 [connection signal="timeout" from="Timer" to="." method="spawn_enemy"]
 [connection signal="destroyed" from="Tower" to="." method="_on_Tower_destroyed"]
 [connection signal="item_purchased" from="HUD" to="." method="spawn_item"]

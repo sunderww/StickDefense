@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://Entities/Tower.tscn" type="PackedScene" id=2]
-[ext_resource path="res://GUI/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Common/Camera/shakable_camera.gd" type="Script" id=1]
+[ext_resource path="res://GUI/HUD.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Entities/Tower.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Main.gd" type="Script" id=4]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 723.126, 81.5747 )
 
 [node name="Main" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource( 4 )
 
 [node name="Ground" type="StaticBody2D" parent="."]
 
@@ -20,10 +22,10 @@ shape = SubResource( 1 )
 color = Color( 0.537255, 0.345098, 0.137255, 1 )
 polygon = PoolVector2Array( -96.5317, 448.255, 1348.92, 445.974, 1348.4, 613.871, -95.6545, 610.537 )
 
-[node name="Tower" parent="." instance=ExtResource( 2 )]
+[node name="Tower" parent="." instance=ExtResource( 3 )]
 position = Vector2( 98.9266, 423.337 )
 
-[node name="HUD" parent="." instance=ExtResource( 4 )]
+[node name="HUD" parent="." instance=ExtResource( 2 )]
 
 [node name="Spawn" type="Node2D" parent="."]
 
@@ -39,5 +41,8 @@ position = Vector2( 129.574, 425.322 )
 
 [node name="MaxPos" type="Position2D" parent="Allies"]
 position = Vector2( 919.201, 427.983 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource( 1 )
 [connection signal="destroyed" from="Tower" to="." method="_on_Tower_destroyed"]
 [connection signal="item_purchased" from="HUD" to="." method="spawn_item"]

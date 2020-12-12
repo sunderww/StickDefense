@@ -2,15 +2,18 @@ extends Node2D
 
 signal enemy_died
 
-# Declare member variables here.
+onready var camera := $ShakableCamera
+onready var freezer := $FrameFreezer
+onready var objects_node := $Objects
+onready var allies_node := $Allies
+onready var enemies_node := $Enemies
+
 var enemy_scene = load("res://Entities/Infantry/EnemyInfantry.tscn")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	PlayerVariables.coin = PlayerVariables.base_coin
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	PlayerVariables.coin += PlayerVariables.coin_per_second * delta
 
@@ -20,11 +23,9 @@ func spawn_enemy() -> void:
 	enemy.is_enemy = true
 	enemy.position = $Spawn/Enemy.position
 	enemy.connect("enemy_died", self, "_on_Enemy_died")
-	enemy.connect("spawn_object", self, "spawn_object")
-	$Enemies.add_child(enemy)
+	spawn_object(enemy, enemies_node)
 
 func spawn_item(purchase: Purchase) -> void:
-	get_tree().root.print_tree_pretty()
 	var scene = load(purchase.resource)
 	DebugService.info("spawn %s" % purchase.title)
 
@@ -35,11 +36,8 @@ func spawn_item(purchase: Purchase) -> void:
 		node.position = $Spawn/AllyAir.position
 	else:
 		DebugService.warning("Spawn item with mouse not implemented yet")
-#	node.max_pos_x = $Allies/MaxPos.global_position.x
-	
-	if node.has_signal("spawn_object"):
-		node.connect("spawn_object", self, "spawn_object")
-	$Allies.add_child(node)
+#	node.max_pos_x = $Allies/MaxPos.global_position.x	
+	spawn_object(node, allies_node)
 
 
 func _on_Enemy_died(coin_gain: int) -> void:
@@ -52,7 +50,11 @@ func _on_Tower_destroyed() -> void:
 	DebugService.info("Game Over")
 	get_tree().quit()
 
-func spawn_object(node: Node2D) -> void:
+func spawn_object(node: Node2D, parent_node=objects_node) -> void:
 	if node.has_signal("spawn_object"):
 		node.connect("spawn_object", self, "spawn_object")
-	$Objects.add_child(node)
+	if node.has_signal("request_shake"):
+		node.connect("request_shake", camera, "_on_shake_requested")
+	if node.has_signal("request_freeze"):
+		node.connect("request_freeze", freezer, "_on_freeze_requested")
+	parent_node.call_deferred("add_child", node)

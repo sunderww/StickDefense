@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Purchase",
 "language": "GDScript",
-"path": "res://purchase.gd"
+"path": "res://Misc/purchase.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -56,8 +56,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PurchaseManager="*res://purchase_manager.gd"
-PlayerVariables="*res://player_variables.gd"
+PurchaseManager="*res://Misc/purchase_manager.gd"
+PlayerVariables="*res://Misc/player_variables.gd"
 DebugService="*res://Misc/debug_service.gd"
 
 [rendering]

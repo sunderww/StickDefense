@@ -13,7 +13,7 @@
 [ext_resource path="res://Resources/Particles/Black smoke/blackSmoke10.png" type="Texture" id=11]
 [ext_resource path="res://Resources/Particles/Black smoke/blackSmoke01.png" type="Texture" id=12]
 [ext_resource path="res://Entities/Chopper/ChopperMissile.gd" type="Script" id=13]
-[ext_resource path="res://Misc/removable_particle2D.gd" type="Script" id=14]
+[ext_resource path="res://Common/removable_particle2D.gd" type="Script" id=14]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -51,34 +51,34 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 11.6799, 2.84301 )
 
-[sub_resource type="CanvasItemMaterial" id=16]
+[sub_resource type="CanvasItemMaterial" id=8]
 light_mode = 1
 particles_animation = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
-[sub_resource type="Gradient" id=8]
+[sub_resource type="Gradient" id=9]
 offsets = PoolRealArray( 0, 0.545455 )
 
-[sub_resource type="GradientTexture" id=9]
-gradient = SubResource( 8 )
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
 
-[sub_resource type="Curve" id=10]
+[sub_resource type="Curve" id=11]
 min_value = -10.0
 max_value = 10.0
 _data = [ Vector2( 0.0187793, 9.80744 ), 0.0, 0.0, 0, 0, Vector2( 0.849765, 0.257888 ), 10.6046, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=11]
-curve = SubResource( 10 )
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
 
-[sub_resource type="Curve" id=12]
+[sub_resource type="Curve" id=13]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.223885 ), -1.57626, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=13]
-curve = SubResource( 12 )
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
 
-[sub_resource type="ParticlesMaterial" id=14]
+[sub_resource type="ParticlesMaterial" id=15]
 emission_shape = 1
 emission_sphere_radius = 3.12
 flag_disable_z = true
@@ -88,15 +88,15 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel_curve = SubResource( 11 )
+linear_accel_curve = SubResource( 12 )
 angle = 45.0
 angle_random = 1.0
 scale_random = 1.0
-scale_curve = SubResource( 13 )
-color_ramp = SubResource( 9 )
+scale_curve = SubResource( 14 )
+color_ramp = SubResource( 10 )
 anim_offset = 1.0
 
-[sub_resource type="AnimatedTexture" id=15]
+[sub_resource type="AnimatedTexture" id=16]
 flags = 4
 frames = 11
 fps = 10.0
@@ -142,15 +142,14 @@ shape = SubResource( 7 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 show_behind_parent = true
-material = SubResource( 16 )
+material = SubResource( 8 )
 amount = 200
 lifetime = 4.0
 speed_scale = 4.0
 randomness = 0.37
-visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
-process_material = SubResource( 14 )
-texture = SubResource( 15 )
+process_material = SubResource( 15 )
+texture = SubResource( 16 )
 script = ExtResource( 14 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]

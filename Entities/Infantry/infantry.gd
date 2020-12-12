@@ -28,6 +28,11 @@ func _process(delta: float) -> void:
 	._process(delta)
 	$StateName.text = state.get_name()
 
+func suffer_attack(damage: int) -> void:
+	.suffer_attack(damage)
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("hurt")
+
 func attack_target() -> void:
 	target.suffer_attack(damage)
 

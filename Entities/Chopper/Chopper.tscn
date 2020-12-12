@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Entities/Chopper/chopper.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Chopper/Chopper_Forward.png" type="Texture" id=2]
 [ext_resource path="res://Entities/Chopper/Chopper_Idle.png" type="Texture" id=3]
+[ext_resource path="res://Effects/Tweening/scale_effect.gd" type="Script" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -116,7 +117,7 @@ can_shoot_up = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 17 )
 animation = "forward"
-frame = 1
+frame = 7
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -143,5 +144,8 @@ autostart = true
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 1.20458, -2.4952 )
 scale = Vector2( 6.09365, 3.72751 )
+
+[node name="ScaleEffect" type="Tween" parent="."]
+script = ExtResource( 4 )
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

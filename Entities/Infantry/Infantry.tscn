@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Entities/Infantry/Infantry_Attacking.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Infantry/Infantry_Aiming.png" type="Texture" id=2]
@@ -6,6 +6,28 @@
 [ext_resource path="res://Entities/Infantry/infantry.gd" type="Script" id=4]
 [ext_resource path="res://Entities/Infantry/Infantry_Walking.png" type="Texture" id=5]
 [ext_resource path="res://Entities/Infantry/Infantry_Idle.png" type="Texture" id=6]
+[ext_resource path="res://Effects/Tweening/scale_effect.gd" type="Script" id=7]
+
+[sub_resource type="Shader" id=38]
+code = "shader_type canvas_item;
+
+uniform float white_progress : hint_range(0,1) = 0;
+
+vec3 interpolate_vec3(vec3 start, vec3 end, float delta){
+    return start + (end - start) * delta;
+}
+
+void fragment(){
+    vec4 origin = texture(TEXTURE, UV);
+    COLOR.rgb = interpolate_vec3(origin.rgb, vec3(1,1,1), white_progress);
+    COLOR.a = origin.a;
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=41]
+resource_local_to_scene = true
+shader = SubResource( 38 )
+shader_param/white_progress = 0.0
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -49,138 +71,138 @@ region = Rect2( 192, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 5 )
 region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 5 )
 region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 5 )
 region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 5 )
 region = Rect2( 64, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 5 )
 region = Rect2( 128, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 5 )
 region = Rect2( 192, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
 atlas = ExtResource( 3 )
-region = Rect2( 0, 128, 64, 64 )
+region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 3 )
-region = Rect2( 64, 128, 64, 64 )
+region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
 atlas = ExtResource( 3 )
-region = Rect2( 128, 128, 64, 64 )
+region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 128, 0, 64, 64 )
+atlas = ExtResource( 3 )
+region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 64, 64 )
+atlas = ExtResource( 3 )
+region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 64, 64, 64 )
+atlas = ExtResource( 3 )
+region = Rect2( 64, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 64, 64, 64, 64 )
+atlas = ExtResource( 3 )
+region = Rect2( 128, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 128, 64, 64, 64 )
+atlas = ExtResource( 3 )
+region = Rect2( 192, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 192, 64, 64, 64 )
+atlas = ExtResource( 3 )
+region = Rect2( 0, 128, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 64, 64 )
+atlas = ExtResource( 3 )
+region = Rect2( 64, 128, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 64, 64 )
+atlas = ExtResource( 3 )
+region = Rect2( 128, 128, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 64, 64 )
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=29]
 flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 64, 0, 64, 64 )
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=30]
 flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 128, 0, 64, 64 )
+atlas = ExtResource( 1 )
+region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=31]
 flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 192, 0, 64, 64 )
+atlas = ExtResource( 1 )
+region = Rect2( 64, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 0, 64, 64, 64 )
+atlas = ExtResource( 1 )
+region = Rect2( 128, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=33]
 flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 64, 64, 64, 64 )
+atlas = ExtResource( 1 )
+region = Rect2( 192, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=34]
 flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 128, 64, 64, 64 )
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=35]
 flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 192, 64, 64, 64 )
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=36]
 animations = [ {
@@ -189,12 +211,17 @@ animations = [ {
 "name": "idle",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 19 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "running",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 27 ) ],
 "loop": false,
 "name": "shooting",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
+"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
 "loop": true,
 "name": "attacking",
 "speed": 10.0
@@ -203,15 +230,26 @@ animations = [ {
 "loop": false,
 "name": "aiming",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
-"loop": true,
-"name": "running",
-"speed": 8.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 8, 26.207 )
+
+[sub_resource type="Animation" id=40]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/white_progress")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.574349, 3.24901 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
 
 [node name="Infantry" type="KinematicBody2D"]
 collision_mask = 0
@@ -232,6 +270,7 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 41 )
 frames = SubResource( 36 )
 animation = "shooting"
 frame = 11
@@ -253,3 +292,9 @@ __meta__ = {
 
 [node name="MuzzlePosition" type="Position2D" parent="."]
 position = Vector2( 21.255, -18.6494 )
+
+[node name="ScaleEffect" type="Tween" parent="."]
+script = ExtResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hurt = SubResource( 40 )

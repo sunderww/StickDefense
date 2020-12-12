@@ -41,8 +41,8 @@ func explode() -> void:
 # their lifetime is over.
 func prepare_free() -> void:
 	var particles = $Particles2D
-	remove_child(particles)
-	get_tree().root.add_child(particles)
+	call_deferred("remove_child", particles)
+	get_tree().root.call_deferred("add_child", particles)
 	particles.global_position = global_position
 	particles.emitting = false
 	particles.should_be_removed = true

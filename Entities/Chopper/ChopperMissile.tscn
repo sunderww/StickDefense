@@ -13,7 +13,7 @@
 [ext_resource path="res://Resources/Particles/Black smoke/blackSmoke10.png" type="Texture" id=11]
 [ext_resource path="res://Resources/Particles/Black smoke/blackSmoke01.png" type="Texture" id=12]
 [ext_resource path="res://Entities/Chopper/ChopperMissile.gd" type="Script" id=13]
-[ext_resource path="res://Common/removable_particle2D.gd" type="Script" id=14]
+[ext_resource path="res://Effects/removable_particle2D.gd" type="Script" id=14]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -133,7 +133,7 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
-frame = 4
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

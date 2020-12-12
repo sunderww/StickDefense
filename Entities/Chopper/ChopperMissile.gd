@@ -46,11 +46,14 @@ func prepare_free() -> void:
 	particles.global_position = global_position
 	particles.emitting = false
 	particles.should_be_removed = true
-
+	
 	DebugService.debug("%s freed" % name)
 	freed = true
-	queue_free()
 	
+	# Calling queue_free now will cause particles to not exist anymore
+	# before being added to the root scene
+	call_deferred("queue_free")
+
 
 func _on_Missile_body_entered(body: PhysicsBody2D) -> void:
 	if not (body.is_in_group("allies") and body.is_in_group("air")):

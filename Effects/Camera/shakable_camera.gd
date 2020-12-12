@@ -16,7 +16,7 @@ func _ready() -> void:
 	_set_duration(duration) # Force call the method to set the timer duration
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var damping := ease(timer.time_left / timer.wait_time, damp_easing)
 	offset = Vector2(
 		rand_range(-amplitude, amplitude) * damping,

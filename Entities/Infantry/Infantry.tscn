@@ -281,7 +281,6 @@ collision_mask = 0
 script = ExtResource( 4 )
 life = 120.0
 damage = 30.0
-RANGE_PX = 25
 bullet_damage = 12
 
 [node name="ProgressBar" type="ProgressBar" parent="."]

@@ -22,7 +22,6 @@ func play_random() -> void:
 
 	var index = _random_index()
 	pitch_scale = rand_range(min_pitch, max_pitch)
-	DebugService.debug("Play rifle%d at pitch %f" % [index+1, pitch_scale])
 
 	stream = sound_list[index]
 	play()

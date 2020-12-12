@@ -13,9 +13,6 @@
 [ext_resource path="res://Entities/Infantry/rifle.ogg" type="AudioStream" id=11]
 [ext_resource path="res://Entities/Infantry/rifle3.ogg" type="AudioStream" id=12]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 26.207 )
-
 [sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
 
@@ -240,6 +237,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 26.207 )
+
 [sub_resource type="Animation" id=40]
 resource_name = "hurt"
 length = 0.3
@@ -284,6 +284,7 @@ __meta__ = {
 }
 damage = 15.0
 resistances = [ 0.0, 0.0, 0.0 ]
+RANGE_PX = 25
 is_enemy = true
 bullet_damage = 9
 bullets = 8
@@ -297,6 +298,13 @@ percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 3 )
+frames = SubResource( 39 )
+animation = "shooting"
+frame = 11
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -3.43479, 1.6029 )
@@ -314,12 +322,8 @@ __meta__ = {
 [node name="MuzzlePosition" type="Position2D" parent="."]
 position = Vector2( 21.255, -18.649 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-material = SubResource( 3 )
-frames = SubResource( 39 )
-animation = "shooting"
-frame = 11
-playing = true
+[node name="ScaleEffect" type="Tween" parent="."]
+script = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hurt = SubResource( 40 )
@@ -331,9 +335,6 @@ amount = 1
 one_shot = true
 process_material = SubResource( 43 )
 texture = ExtResource( 7 )
-
-[node name="ScaleEffect" type="Tween" parent="."]
-script = ExtResource( 8 )
 
 [node name="Particles2D2" type="Particles2D" parent="."]
 position = Vector2( 7.07367, -17.7852 )

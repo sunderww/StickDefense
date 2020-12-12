@@ -64,17 +64,16 @@ func reload_closest_target() -> void:
 func closest_target() -> Node2D:
 	var group_name = "allies" if is_enemy else "enemies"
 	var targets = get_tree().get_nodes_in_group(group_name)
-
-	if len(targets) == 0:
-		return null
-
-	var nearest = targets[0]
+	
+	var nearest = null
 	for t in targets:
 		if t.is_in_group("air") and not can_shoot_up:
 			continue
-		if t.global_position.distance_to(global_position) < nearest.global_position.distance_to(global_position):
+		if not nearest or t.global_position.distance_to(global_position) < nearest.global_position.distance_to(global_position):
 			nearest = t
 	
+	if not nearest and is_enemy:
+		nearest = get_tree().get_nodes_in_group("tower")[0]
 	return nearest
 	
 func target_in_range() -> bool:

@@ -5,6 +5,7 @@ class_name Infantry
 signal spawn_object(node)
 
 const Idle = preload("res://Entities/Infantry/States/idle.gd")
+const Attacking = preload("res://Entities/Infantry/States/attacking.gd")
 
 onready var shell_particles = $Particles2D
 onready var shell_particles2 = $Particles2D2
@@ -30,6 +31,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	._process(delta)
 	$StateName.text = state.get_name()
+
+
+func _physics_process(delta: float) -> void:
+	._physics_process(delta)
+	
+	if target and target.global_position.distance_to(global_position) <= RANGE_PX:
+		var attacking = Attacking.new()
+		if state.get_name() != attacking.get_name():
+			state.set_state(attacking)
+
 
 func suffer_attack(damage: int) -> void:
 	.suffer_attack(damage)

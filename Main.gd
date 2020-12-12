@@ -46,7 +46,6 @@ func _on_Enemy_died(coin_gain: int) -> void:
 	emit_signal("enemy_died")
 
 func _on_Tower_destroyed() -> void:
-	return
 	# Should show game over
 	DebugService.info("Game Over")
 	get_tree().quit()

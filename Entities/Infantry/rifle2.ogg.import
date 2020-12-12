@@ -11,5 +11,5 @@ dest_files=[ "res://.import/rifle2.ogg-0bb08dbc114e82a39d918035a3c58e3a.oggstr" 
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

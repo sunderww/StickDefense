@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 	if not bullet_spawned:
 		var bullet = Bullet.instance()
 		if parent.is_enemy:
-			bullet.target_group = "allies"
+			bullet.target_groups = ["allies", "tower"]
 			bullet.set_scale(Vector2(-1, 1))
 
 		bullet.global_position = parent.get_node("MuzzlePosition").global_position

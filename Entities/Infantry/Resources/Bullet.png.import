@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Bullet.png-bb85a451c13a7e9b77eda793f662fd73.stex"
+path="res://.import/Bullet.png-20fff5a5e05ddb2f7c82e60670fdc262.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Infantry/Bullet.png"
-dest_files=[ "res://.import/Bullet.png-bb85a451c13a7e9b77eda793f662fd73.stex" ]
+source_file="res://Entities/Infantry/Resources/Bullet.png"
+dest_files=[ "res://.import/Bullet.png-20fff5a5e05ddb2f7c82e60670fdc262.stex" ]
 
 [params]
 

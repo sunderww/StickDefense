@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Infantry_Shooting.png-c81c7a5c6b09872f6eeb33176814bcdb.stex"
+path="res://.import/Infantry_Idle.png-29320b71ee8d6165c78bfc70d72ce88a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Infantry/Infantry_Shooting.png"
-dest_files=[ "res://.import/Infantry_Shooting.png-c81c7a5c6b09872f6eeb33176814bcdb.stex" ]
+source_file="res://Entities/Infantry/Resources/Infantry_Idle.png"
+dest_files=[ "res://.import/Infantry_Idle.png-29320b71ee8d6165c78bfc70d72ce88a.stex" ]
 
 [params]
 

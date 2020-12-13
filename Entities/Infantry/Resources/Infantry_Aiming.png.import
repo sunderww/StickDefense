@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Infantry_Walking.png-7d34ea6290cffd5d6be5c7aed742c215.stex"
+path="res://.import/Infantry_Aiming.png-fd0f331ee6c52d256c310211b7ce34c9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Infantry/Infantry_Walking.png"
-dest_files=[ "res://.import/Infantry_Walking.png-7d34ea6290cffd5d6be5c7aed742c215.stex" ]
+source_file="res://Entities/Infantry/Resources/Infantry_Aiming.png"
+dest_files=[ "res://.import/Infantry_Aiming.png-fd0f331ee6c52d256c310211b7ce34c9.stex" ]
 
 [params]
 

@@ -40,19 +40,22 @@ func explode() -> void:
 # It will reparent the particle object so that they are still visible until
 # their lifetime is over.
 func prepare_free() -> void:
+	if freed:
+		return
+
 	var particles = $Particles2D
-	call_deferred("remove_child", particles)
-	get_tree().root.call_deferred("add_child", particles)
 	particles.global_position = global_position
 	particles.emitting = false
 	particles.should_be_removed = true
-	
-	DebugService.debug("%s freed" % name)
-	freed = true
+
+	call_deferred("remove_child", particles)
+	get_tree().root.call_deferred("add_child", particles)
 	
 	# Calling queue_free now will cause particles to not exist anymore
 	# before being added to the root scene
 	call_deferred("queue_free")
+	DebugService.debug("%s freed" % name)
+	freed = true
 
 
 func _on_Missile_body_entered(body: PhysicsBody2D) -> void:

@@ -324,6 +324,7 @@ position = Vector2( 21.255, -18.649 )
 
 [node name="ScaleEffect" type="Tween" parent="."]
 script = ExtResource( 8 )
+enabled = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hurt = SubResource( 40 )

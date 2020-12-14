@@ -35,11 +35,11 @@ position = Vector2( 98.9266, 423.337 )
 
 [node name="Spawn" type="Node2D" parent="."]
 
-[node name="Enemy" type="Position2D" parent="Spawn"]
-position = Vector2( 1066.46, 407.338 )
+[node name="EnemyGround" type="Position2D" parent="Spawn"]
+position = Vector2( 1000, 420 )
 
 [node name="AllyGround" type="Position2D" parent="Spawn"]
-position = Vector2( 93.574, 425.322 )
+position = Vector2( 93, 420 )
 
 [node name="AllyAir" type="Position2D" parent="Spawn"]
 position = Vector2( 52.8605, 98.7527 )

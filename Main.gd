@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 func spawn_enemy() -> void:
 	var enemy: BaseEntity = enemy_scene.instance()
 	enemy.is_enemy = true
-	enemy.position = $Spawn/Enemy.position
+	enemy.position = $Spawn/EnemyGround.position
 	enemy.connect("enemy_died", self, "_on_Enemy_died")
 	spawn_object(enemy, enemies_node)
 

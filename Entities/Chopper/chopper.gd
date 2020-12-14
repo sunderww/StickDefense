@@ -1,7 +1,5 @@
 extends BaseEntity
 
-signal spawn_object(node)
-
 
 const Forward = preload("res://Entities/Chopper/States/forward.gd")
 const Missile = preload("res://Entities/Chopper/Missile/ChopperMissile.tscn")

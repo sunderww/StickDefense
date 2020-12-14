@@ -2,9 +2,6 @@ extends BaseEntity
 
 class_name Infantry
 
-signal spawn_object(node)
-
-const Dying = preload("res://Entities/Infantry/DyingInfantry.tscn")
 const Idle = preload("res://Entities/Infantry/States/idle.gd")
 const Attacking = preload("res://Entities/Infantry/States/attacking.gd")
 
@@ -42,21 +39,6 @@ func _physics_process(delta: float) -> void:
 		if state.get_name() != attacking.get_name():
 			state.set_state(attacking)
 
-
-func suffer_attack(damage: int) -> void:
-	.suffer_attack(damage)
-	$AnimationPlayer.stop()
-	$AnimationPlayer.play("hurt")
-
-func attack_target() -> void:
-	target.suffer_attack(damage)
-
-func die() -> void:
-	.die()
-	
-	var dying = Dying.instance()
-	dying.global_position = global_position
-	emit_signal("spawn_object", dying)
 
 func target_in_rifle_range() -> bool:
 	return target and global_position.distance_to(target.global_position) < SHOOT_RANGE_PX

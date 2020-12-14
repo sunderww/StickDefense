@@ -2,9 +2,12 @@ extends KinematicBody2D
 
 class_name BaseEntity
 
+signal spawn_object(node)
+
 
 var state: State
 
+var max_life: float
 export var life: float = 100
 export var damage: float = 35
 export(Array, float) var resistances = []
@@ -16,19 +19,23 @@ var velocity = Vector2()
 var direction: int = 1 # -1 for left ; 1 for right
 var target: Node2D = null
 
-export (bool) var has_gravity = true
-export (bool) var can_shoot_up = false
-export (bool) var is_enemy = false
+export (PackedScene) var DyingScene = preload("res://Entities/DyingUnit.tscn")
+
+export (bool) var has_gravity := true
+export (bool) var can_shoot_up := false
+export (bool) var is_enemy := false
 var is_dead: bool = false # to avoid calling die() multiple times
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	max_life = life
+
 	var group_name = "enemies" if is_enemy else "allies"
 	add_to_group(group_name)
 	add_to_group("unit")
 
 func _process(delta: float) -> void:
-	$ProgressBar.value = life
+	$ProgressBar.value = life / max_life * 100
 	state._process(delta)
 	
 
@@ -79,20 +86,33 @@ func closest_target() -> Node2D:
 func target_in_range() -> bool:
 	return target and global_position.distance_to(target.global_position) < RANGE_PX
 
-# Must be overridden
+
 func attack_target() -> void:
-	assert(false)
+	target.suffer_attack(damage)
 
 
 func suffer_attack(base_damage: int) -> void:
 	# Spawn a visual effect here
+
+	var animation = get_node_or_null("AnimationPlayer")
+	if animation:
+		animation.stop()
+		animation.play("hurt")
+
 	DebugService.silly("%s took %d dmgs" % [name, base_damage])
 	life -= base_damage
 	if life <= 0 and not is_dead:
 		die()
 
+
 func die() -> void:
 	is_dead = true
+
+	if DyingScene:
+		var dying = DyingScene.instance()
+		dying.global_position = global_position
+		emit_signal("spawn_object", dying)
+
 	queue_free()
 
 

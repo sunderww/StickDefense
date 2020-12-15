@@ -13,7 +13,7 @@
 [ext_resource path="res://Entities/Infantry/Resources/rifle.ogg" type="AudioStream" id=11]
 [ext_resource path="res://Entities/Infantry/Resources/rifle3.ogg" type="AudioStream" id=12]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=54]
 code = "shader_type canvas_item;
 
 uniform float white_progress : hint_range(0,1) = 0;
@@ -31,7 +31,7 @@ custom_defines = ""
 
 [sub_resource type="ShaderMaterial" id=28]
 resource_local_to_scene = true
-shader = SubResource( 1 )
+shader = SubResource( 54 )
 shader_param/white_progress = 0.0
 
 [sub_resource type="AtlasTexture" id=32]
@@ -144,7 +144,7 @@ flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 64, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=54]
+[sub_resource type="AtlasTexture" id=68]
 flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 128, 0, 64, 64 )
@@ -231,7 +231,7 @@ animations = [ {
 "name": "idle",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ) ],
+"frames": [ SubResource( 52 ), SubResource( 53 ), SubResource( 68 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ) ],
 "loop": true,
 "name": "running",
 "speed": 10.0

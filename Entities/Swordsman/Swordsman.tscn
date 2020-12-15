@@ -6,7 +6,7 @@
 [ext_resource path="res://Effects/Tweening/scale_effect.gd" type="Script" id=4]
 [ext_resource path="res://Entities/Swordsman/Swordsman_Walking.png" type="Texture" id=5]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=54]
 code = "shader_type canvas_item;
 
 uniform float white_progress : hint_range(0,1) = 0;
@@ -24,7 +24,7 @@ custom_defines = ""
 
 [sub_resource type="ShaderMaterial" id=28]
 resource_local_to_scene = true
-shader = SubResource( 1 )
+shader = SubResource( 54 )
 shader_param/white_progress = 0.0
 
 [sub_resource type="AtlasTexture" id=3]
@@ -180,7 +180,7 @@ script = ExtResource( 3 )
 life = 90.0
 damage = 30.0
 RANGE_PX = 20
-MOVE_SPEED_PX = 6000
+MOVE_SPEED_PX = 5000
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 margin_left = -17.3203
@@ -196,7 +196,7 @@ __meta__ = {
 material = SubResource( 28 )
 frames = SubResource( 29 )
 animation = "attacking"
-frame = 7
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

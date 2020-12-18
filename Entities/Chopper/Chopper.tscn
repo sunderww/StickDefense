@@ -105,14 +105,15 @@ radius = 22.5385
 "air",
 "allies",
 ]]
+collision_layer = 33
 collision_mask = 0
 script = ExtResource( 1 )
-life = 150.0
-damage = 130.0
+life = 50.0
+damage = 100.0
 RANGE_PX = 550
-MOVE_SPEED_PX = 2300
+MOVE_SPEED_PX = 2500
+DyingScene = null
 has_gravity = false
-can_shoot_up = true
 spawn_in_air = true
 is_enemy = true
 coin_gain = 50
@@ -121,7 +122,7 @@ score_gain = 500
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 17 )
 animation = "forward"
-frame = 6
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

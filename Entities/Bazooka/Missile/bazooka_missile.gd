@@ -8,7 +8,12 @@ export var max_speed: int = 600
 export var acceleration: int = 260
 export var steer_force: int = 260
 
-var target_position: Vector2
+# Aim a bit after the target on the ground
+export (Vector2) var ground_offset = Vector2(20, 32)
+export (Vector2) var air_offset = Vector2.ZERO
+
+var target: Node2D
+onready var target_position: Vector2 = target.global_position
 var target_groups: Array = ["enemies"]
 var velocity := Vector2.ZERO
 var freed := false
@@ -32,7 +37,13 @@ func _physics_process(delta: float) -> void:
 
 func seek():
 	var steer = Vector2.ZERO
-	var desired = (target_position - global_position).normalized() * acceleration
+	var desired = Vector2.ZERO
+	
+	if target:
+		var offset = air_offset if target.spawn_in_air else ground_offset
+		desired = (target.global_position - global_position + offset).normalized() * acceleration
+	else:
+		desired = (target_position - global_position).normalized() * acceleration 
 	steer = (desired - velocity).normalized() * steer_force
 	return steer
 

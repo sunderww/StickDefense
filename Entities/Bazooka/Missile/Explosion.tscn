@@ -3,7 +3,7 @@
 [ext_resource path="res://Resources/explosion.wav" type="AudioStream" id=1]
 [ext_resource path="res://Entities/Chopper/Explosion/Explosion.png" type="Texture" id=2]
 
-[sub_resource type="GDScript" id=16]
+[sub_resource type="GDScript" id=1]
 script/source = "extends Area2D
 
 
@@ -14,7 +14,7 @@ signal request_freeze
 var damage
 
 # get_overlapping_bodies return empty array in _ready, so do it in _process
-var damage_happened
+var damage_happened: bool = false
 
 func _ready() -> void:
 	$AnimatedSprite.playing = true
@@ -29,7 +29,7 @@ func _process(_delta: float) -> void:
 		# until there is at least one body
 		var bodies = get_overlapping_bodies()
 		if len(bodies):
-			for body in get_overlapping_bodies():
+			for body in bodies:
 				explode_on_body(body)
 			damage_happened = true
 
@@ -44,10 +44,12 @@ func explode_on_body(body: PhysicsBody2D) -> void:
 		var distance = global_position.distance_to(body.global_position)
 		var radius = $CollisionShape2D.shape.radius
 		var actual_damage = min(damage * (radius * 1.3 - distance) / radius, damage)
+		actual_damage = max(actual_damage, float(damage) / 3.0)
 		body.suffer_attack(actual_damage)
+
 "
 
-[sub_resource type="CircleShape2D" id=17]
+[sub_resource type="CircleShape2D" id=2]
 radius = 37.1472
 
 [sub_resource type="AtlasTexture" id=3]
@@ -110,7 +112,7 @@ flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 1056, 0, 96, 96 )
 
-[sub_resource type="SpriteFrames" id=18]
+[sub_resource type="SpriteFrames" id=15]
 animations = [ {
 "frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": false,
@@ -119,13 +121,13 @@ animations = [ {
 } ]
 
 [node name="BazookaExplosion" type="Area2D"]
-script = SubResource( 16 )
+script = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 17 )
+shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 18 )
+frames = SubResource( 15 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )

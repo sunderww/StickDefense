@@ -4,8 +4,6 @@ const IDLE_PATH = "res://Entities/Bazooka/States/idle.gd"
 const AIMING_PATH = "res://Entities/Bazooka/States/aiming.gd"
 const Missile = preload("res://Entities/Bazooka/Missile/BazookaMissile.tscn")
 
-# Aim a bit after the target and on the ground
-const MISSILE_OFFSET = Vector2(20, 32)
 
 var current_target
 var sprite: AnimatedSprite
@@ -36,10 +34,10 @@ func _process(_delta: float) -> void:
 			missile.target_groups = ["allies", "tower"]
 			missile.set_scale(Vector2(1, -1))
 
-		missile.rotate(deg2rad(-20))
-		missile.target_position = parent.target.global_position + MISSILE_OFFSET
+		missile.target = parent.target
 		missile.damage = parent.damage
 		missile.global_position = parent.get_node("MuzzlePosition").global_position
+		missile.rotate(deg2rad(-20))
 		parent.shoot(missile)
 		missile_spawned = true
 		DebugService.debug("%s: Spawn missile" % parent.name)

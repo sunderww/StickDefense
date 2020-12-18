@@ -67,7 +67,7 @@ var ENEMIES := [
 	# Enemy.new(path: String, lifetime: float, intensity: float, min_lvl: int = 0)
 	Enemy.new("res://Entities/Swordsman/Swordsman.tscn", 3, 3, 20),
 	Enemy.new("res://Entities/Infantry/EnemyInfantry.tscn", 8, 5, 10, 2),
-	Enemy.new("res://Entities/Chopper/Chopper.tscn", 15, 10, 1, 5),
+	Enemy.new("res://Entities/Chopper/Chopper.tscn", 15, 10, 2, 5),
 ] 
 
 func _get_available_enemies(level: int) -> Array:
@@ -105,7 +105,6 @@ func _generate_subwave(available_enemies: Array, time_offset: float, intensity_p
 
 	var duration: float = float(intensity) / intensity_per_s
 	var duration_multiplier: float = rand_range(0.9, 1.1)
-	DebugService.debug("Subwave spawn %d enemies for %f seconds" % [enemies.size(), duration])
 	return {
 		"enemies": enemies,
 		"duration": duration * duration_multiplier

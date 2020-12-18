@@ -8,7 +8,7 @@ signal request_freeze
 var damage
 
 # get_overlapping_bodies return empty array in _ready, so do it in _process
-var damage_happened
+var damage_happened: bool = false
 
 func _ready() -> void:
 	$AnimatedSprite.playing = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Tower.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://GUI/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Effects/frame_freezer.gd" type="Script" id=5]
 [ext_resource path="res://Resources/StickWar.wav" type="AudioStream" id=6]
+[ext_resource path="res://Misc/wave_manager.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 723.126, 81.5747 )
@@ -26,10 +27,6 @@ shape = SubResource( 1 )
 color = Color( 0.537255, 0.345098, 0.137255, 1 )
 polygon = PoolVector2Array( -96.5317, 448.255, 1348.92, 445.974, 1348.4, 613.871, -95.6545, 610.537 )
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
-
 [node name="Tower" parent="." instance=ExtResource( 2 )]
 position = Vector2( 98.9266, 423.337 )
 
@@ -39,6 +36,9 @@ position = Vector2( 98.9266, 423.337 )
 
 [node name="EnemyGround" type="Position2D" parent="Spawn"]
 position = Vector2( 1000, 420 )
+
+[node name="EnemyAir" type="Position2D" parent="Spawn"]
+position = Vector2( 1000, 100.882 )
 
 [node name="AllyGround" type="Position2D" parent="Spawn"]
 position = Vector2( 93, 420 )
@@ -66,7 +66,9 @@ delay_ms = 90
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-autoplay = true
-[connection signal="timeout" from="Timer" to="." method="spawn_enemy"]
+
+[node name="WaveManager" type="Node" parent="."]
+script = ExtResource( 7 )
 [connection signal="destroyed" from="Tower" to="." method="_on_Tower_destroyed"]
 [connection signal="item_purchased" from="HUD" to="." method="spawn_item"]
+[connection signal="spawn_enemy" from="WaveManager" to="." method="_on_WaveManager_spawn_enemy"]

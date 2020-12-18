@@ -34,7 +34,7 @@ func _process(_delta: float) -> void:
 		var missile = Missile.instance()	
 		if parent.is_enemy:
 			missile.target_groups = ["allies", "tower"]
-			missile.set_scale(Vector2(-1, 1))
+			missile.set_scale(Vector2(1, -1))
 
 		missile.rotate(deg2rad(-20))
 		missile.target_position = parent.target.global_position + MISSILE_OFFSET

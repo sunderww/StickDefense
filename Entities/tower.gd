@@ -4,7 +4,7 @@ extends StaticBody2D
 signal destroyed
 
 var max_life
-var life = 1000
+var life = 2000
 
 
 # Called when the node enters the scene tree for the first time.

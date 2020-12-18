@@ -21,9 +21,20 @@ func shoot_missile() -> void:
 	var missile = Missile.instance()
 	
 	missile.global_position = $MissilePosition.global_position
-	missile.rotation = deg2rad(angle + rand_range(-5, 5))
+	var rotation = deg2rad(angle + rand_range(-5, 5))
+	if is_enemy:
+		rotation = PI - rotation
+	missile.rotation = rotation
 	missile.damage = damage
 	emit_signal("spawn_object", missile)
+
+
+func set_direction(left: bool) -> void:
+	.set_direction(left)
+	$MissilePosition.position.x = abs($MissilePosition.position.x) * (-1 if left else 1)
+	$CollisionShape2D.position.x = abs($CollisionShape2D.position.x) * (-1 if left else 1)
+	$ProgressBar.rect_position.x = abs($ProgressBar.rect_position.x) * (-1 if left else 1)
+
 
 func _on_ShootTimer_timeout() -> void:
 	shoot_missile()

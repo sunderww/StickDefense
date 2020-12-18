@@ -15,5 +15,5 @@ func enter(parent) -> void:
 	sprite.frame = randi() % sprite.frames.get_frame_count(sprite.animation)
 
 func _fixed_process(delta: float) -> void:
-	parent.velocity.x = parent.MOVE_SPEED_PX * delta
+	parent.velocity.x = parent.MOVE_SPEED_PX * delta * parent.direction
 	

@@ -3,7 +3,7 @@ extends KinematicBody2D
 class_name BaseEntity
 
 signal spawn_object(node)
-
+signal enemy_died(coin_gain, score_gain)
 
 var state: State
 
@@ -23,7 +23,13 @@ export (PackedScene) var DyingScene = preload("res://Entities/DyingUnit.tscn")
 
 export (bool) var has_gravity := true
 export (bool) var can_shoot_up := false
+export (bool) var spawn_in_air := false
+
 export (bool) var is_enemy := false
+export (int) var coin_gain := 0
+export (int) var score_gain := 0
+
+var lifetime: float = 0
 var is_dead: bool = false # to avoid calling die() multiple times
 
 # Called when the node enters the scene tree for the first time.
@@ -33,8 +39,11 @@ func _ready() -> void:
 	var group_name = "enemies" if is_enemy else "allies"
 	add_to_group(group_name)
 	add_to_group("unit")
+	
+	set_direction(is_enemy)
 
 func _process(delta: float) -> void:
+	lifetime += delta
 	$ProgressBar.value = life / max_life * 100
 	state._process(delta)
 	
@@ -112,6 +121,10 @@ func die() -> void:
 		var dying = DyingScene.instance()
 		dying.global_position = global_position
 		emit_signal("spawn_object", dying)
+	
+	if is_enemy:
+		var score = score_gain / (lifetime/10.0 + 1)
+		emit_signal("enemy_died", coin_gain, score)
 
 	queue_free()
 

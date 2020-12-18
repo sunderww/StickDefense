@@ -13,6 +13,8 @@ func _ready():
 		button.connect("item_purchased", self, "_on_item_purchased")
 		$MarginContainer/HBoxContainer/PurchaseContainer.add_child(button)
 
+func _process(_delta: float):
+	$MarginContainer/HBoxContainer/ScoreLabel.text = "%s" % PlayerVariables.score
 
 func _on_item_purchased(purchase: Purchase):
 	emit_signal("item_purchased", purchase)

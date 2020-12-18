@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Entities/Infantry/bullet.gd"
 }, {
-"base": "Infantry",
-"class": "EnemyInfantry",
-"language": "GDScript",
-"path": "res://Entities/Infantry/enemy_infantry.gd"
-}, {
 "base": "BaseEntity",
 "class": "Infantry",
 "language": "GDScript",
@@ -48,16 +43,21 @@ _global_script_classes=[ {
 "class": "State",
 "language": "GDScript",
 "path": "res://Entities/state.gd"
+}, {
+"base": "Node",
+"class": "WaveManager",
+"language": "GDScript",
+"path": "res://Misc/wave_manager.gd"
 } ]
 _global_script_class_icons={
 "BaseEntity": "",
 "Bullet": "",
-"EnemyInfantry": "",
 "Infantry": "",
 "Purchase": "",
 "RandomizedStreamPlayer": "",
 "ScaleEffect": "",
-"State": ""
+"State": "",
+"WaveManager": ""
 }
 
 [application]

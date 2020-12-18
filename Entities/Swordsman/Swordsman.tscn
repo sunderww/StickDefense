@@ -6,7 +6,7 @@
 [ext_resource path="res://Effects/Tweening/scale_effect.gd" type="Script" id=4]
 [ext_resource path="res://Entities/Swordsman/Swordsman_Walking.png" type="Texture" id=5]
 
-[sub_resource type="Shader" id=54]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 uniform float white_progress : hint_range(0,1) = 0;
@@ -22,9 +22,9 @@ void fragment(){
 }"
 custom_defines = ""
 
-[sub_resource type="ShaderMaterial" id=28]
+[sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
-shader = SubResource( 54 )
+shader = SubResource( 1 )
 shader_param/white_progress = 0.0
 
 [sub_resource type="AtlasTexture" id=3]
@@ -137,7 +137,7 @@ flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 192, 64, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=29]
+[sub_resource type="SpriteFrames" id=25]
 animations = [ {
 "frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
@@ -181,6 +181,8 @@ life = 90.0
 damage = 30.0
 RANGE_PX = 20
 MOVE_SPEED_PX = 5000
+coin_gain = 5
+score_gain = 50
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 margin_left = -17.3203
@@ -193,10 +195,10 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-material = SubResource( 28 )
-frames = SubResource( 29 )
+material = SubResource( 2 )
+frames = SubResource( 25 )
 animation = "attacking"
-frame = 6
+frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

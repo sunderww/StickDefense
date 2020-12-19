@@ -9,7 +9,7 @@ export var acceleration: int = 260
 export var steer_force: int = 260
 
 # Aim a bit after the target on the ground
-export (Vector2) var ground_offset = Vector2(20, 32)
+export (Vector2) var ground_offset = Vector2(20, 62)
 export (Vector2) var air_offset = Vector2.ZERO
 
 var target: Node2D

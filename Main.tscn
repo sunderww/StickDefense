@@ -3,7 +3,7 @@
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Tower.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Effects/Camera/ShakableCamera.tscn" type="PackedScene" id=3]
-[ext_resource path="res://GUI/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://GUI/Panel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Effects/frame_freezer.gd" type="Script" id=5]
 [ext_resource path="res://Resources/StickWar.wav" type="AudioStream" id=6]
 [ext_resource path="res://Misc/wave_manager.gd" type="Script" id=7]
@@ -29,8 +29,6 @@ polygon = PoolVector2Array( -96.5317, 448.255, 1348.92, 445.974, 1348.4, 613.871
 
 [node name="Tower" parent="." instance=ExtResource( 2 )]
 position = Vector2( 98.9266, 423.337 )
-
-[node name="HUD" parent="." instance=ExtResource( 4 )]
 
 [node name="Spawn" type="Node2D" parent="."]
 
@@ -67,8 +65,11 @@ delay_ms = 90
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 
+[node name="Panel" parent="." instance=ExtResource( 4 )]
+margin_bottom = 52.0
+
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource( 7 )
 [connection signal="destroyed" from="Tower" to="." method="_on_Tower_destroyed"]
-[connection signal="item_purchased" from="HUD" to="." method="spawn_item"]
+[connection signal="item_purchased" from="Panel" to="." method="_on_Panel_item_purchased"]
 [connection signal="spawn_enemy" from="WaveManager" to="." method="_on_WaveManager_spawn_enemy"]

@@ -23,18 +23,6 @@ func start_next_wave() -> void:
 	# Put something on screen
 	$WaveManager.start(PlayerVariables.level)
 
-func spawn_item(purchase: Purchase) -> void:
-	var scene = load(purchase.resource)
-	DebugService.info("spawn %s" % purchase.title)
-
-	var node: Node2D = scene.instance()
-	if node.spawn_in_air:
-		node.position = $Spawn/AllyAir.position
-	else:
-		node.position = $Spawn/AllyGround.position
-#	node.max_pos_x = $Allies/MaxPos.global_position.x	
-	spawn_object(node, allies_node)
-
 
 func spawn_object(node: Node2D, parent_node=objects_node) -> void:
 	if node.has_signal("spawn_object"):
@@ -74,3 +62,17 @@ func _on_WaveManager_spawn_enemy(enemy: BaseEntity) -> void:
 	enemy.connect("enemy_died", self, "_on_Enemy_died")
 	enemy.connect("tree_exited", self, "_on_Enemy_tree_exited")
 	spawn_object(enemy, enemies_node)
+
+
+func _on_Panel_item_purchased(purchase):
+	var scene = load(purchase.resource)
+	PlayerVariables.coin -= purchase.price
+
+	DebugService.info("spawn %s" % purchase.title)
+	var node: Node2D = scene.instance()
+	if node.spawn_in_air:
+		node.position = $Spawn/AllyAir.position
+	else:
+		node.position = $Spawn/AllyGround.position
+#	node.max_pos_x = $Allies/MaxPos.global_position.x	
+	spawn_object(node, allies_node)

@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends PanelContainer
 
 signal item_purchased(purchase)
 
@@ -11,10 +11,10 @@ func _ready():
 		var button = PurchaseButton.instance()
 		button.purchase = purchase
 		button.connect("item_purchased", self, "_on_item_purchased")
-		$MarginContainer/HBoxContainer/PurchaseContainer.add_child(button)
+		$HBoxContainer/PurchaseContainer.add_child(button)
 
 func _process(_delta: float):
-	$MarginContainer/HBoxContainer/ScoreLabel.text = "%s" % PlayerVariables.score
+	$HBoxContainer/ScoreLabel.text = "%10d" % PlayerVariables.score
 
 func _on_item_purchased(purchase: Purchase):
 	emit_signal("item_purchased", purchase)

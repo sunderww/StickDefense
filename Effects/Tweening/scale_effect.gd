@@ -6,7 +6,7 @@ class_name ScaleEffect
 export var min_time: float = 0.4
 export var max_time: float = 0.9
 
-export var enabled: bool = true
+export var enabled: bool = true setget set_enabled
 
 func _ready() -> void:
 	if not enabled:
@@ -26,3 +26,9 @@ func _ready() -> void:
 		EASE_OUT
 	)
 	start()
+
+
+func set_enabled(value: bool) -> void:
+	enabled = value
+	if not value:
+		stop_all()

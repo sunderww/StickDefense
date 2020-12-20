@@ -3,7 +3,7 @@ extends BaseEntity
 const Idle = preload("res://Entities/Swordsman/States/idle.gd")
 
 
-func _ready():
+func _ready() -> void:
 	self.name = "Swordsman"
 	
 	$ScaleEffect.enabled = !is_enemy

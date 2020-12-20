@@ -19,9 +19,7 @@ func _process(delta: float) -> void:
 func start_next_wave() -> void:
 	PlayerVariables.level_cleared()
 	enemy_count = 0
-	
-	# Put something on screen
-	$WaveManager.start(PlayerVariables.level)
+	$WaveIndicator.level = PlayerVariables.level
 
 
 func spawn_object(node: Node2D, parent_node=objects_node) -> void:
@@ -76,3 +74,7 @@ func _on_Panel_item_purchased(purchase):
 		node.position = $Spawn/AllyGround.position
 #	node.max_pos_x = $Allies/MaxPos.global_position.x	
 	spawn_object(node, allies_node)
+
+
+func _on_WaveIndicator_animation_finished():
+	$WaveManager.start(PlayerVariables.level)

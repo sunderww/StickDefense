@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Entities/state.gd"
 }, {
+"base": "Node2D",
+"class": "WaveIndicator",
+"language": "GDScript",
+"path": "res://GUI/wave_indicator.gd"
+}, {
 "base": "Node",
 "class": "WaveManager",
 "language": "GDScript",
@@ -63,6 +68,7 @@ _global_script_class_icons={
 "RandomizedStreamPlayer": "",
 "ScaleEffect": "",
 "State": "",
+"WaveIndicator": "",
 "WaveManager": ""
 }
 

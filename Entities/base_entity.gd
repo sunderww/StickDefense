@@ -29,13 +29,15 @@ export (bool) var is_enemy := false
 export (int) var coin_gain := 0
 export (int) var score_gain := 0
 
-export var invincibility_time: float = 1.5 # Can't be damaged during this time
+export var spawn_invincibility_time: float = 1.5 # Can't be damaged during this time
+var invincibility_time: float = 0 # Can't be damaged during this time
 var lifetime: float = 0
 var is_dead: bool = false # to avoid calling die() multiple times
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	max_life = life
+	invincibility_time = spawn_invincibility_time
 
 	var group_name = "enemies" if is_enemy else "allies"
 	add_to_group(group_name)
@@ -45,6 +47,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	lifetime += delta
+	if invincibility_time > 0:
+		invincibility_time -= delta
 	$ProgressBar.value = life / max_life * 100
 	state._process(delta)
 	
@@ -102,7 +106,7 @@ func attack_target() -> void:
 
 
 func suffer_attack(base_damage: int) -> void:
-	if lifetime < invincibility_time:
+	if invincibility_time > 0:
 		return
 
 	var animation = get_node_or_null("AnimationPlayer")

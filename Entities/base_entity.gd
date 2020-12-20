@@ -29,6 +29,7 @@ export (bool) var is_enemy := false
 export (int) var coin_gain := 0
 export (int) var score_gain := 0
 
+export var invincibility_time: float = 1.5 # Can't be damaged during this time
 var lifetime: float = 0
 var is_dead: bool = false # to avoid calling die() multiple times
 
@@ -101,7 +102,8 @@ func attack_target() -> void:
 
 
 func suffer_attack(base_damage: int) -> void:
-	# Spawn a visual effect here
+	if lifetime < invincibility_time:
+		return
 
 	var animation = get_node_or_null("AnimationPlayer")
 	if animation:

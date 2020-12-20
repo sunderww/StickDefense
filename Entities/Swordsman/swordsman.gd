@@ -5,6 +5,8 @@ const Idle = preload("res://Entities/Swordsman/States/idle.gd")
 
 func _ready():
 	self.name = "Swordsman"
+	
+	$ScaleEffect.enabled = !is_enemy
 
 	# Make the SHOOT_RANGE_PX vary by +-10% so that not all units shoot from the same position
 	var modifier: float = 1.0 - (float(randi() % 20 - 10) / 100.0)

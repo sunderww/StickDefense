@@ -198,7 +198,6 @@ __meta__ = {
 material = SubResource( 2 )
 frames = SubResource( 25 )
 animation = "attacking"
-frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -5,8 +5,8 @@ signal spawn_object(explosion)
 const Explosion = preload("res://Entities/Bazooka/Missile/Explosion.tscn")
 
 export var max_speed: int = 600
-export var acceleration: int = 260
-export var steer_force: int = 260
+export var acceleration: int = 280
+export var steer_force: int = 280
 
 # Aim a bit after the target on the ground
 export (Vector2) var ground_offset = Vector2(20, 62)
@@ -25,9 +25,12 @@ func _init() -> void:
 	name = "Missile"
 
 func _ready() -> void:
+	$Indicator.visible = DebugService.level == DebugService.LogLevel.SILLY
 	velocity = Vector2(acceleration, 0).rotated(rotation).clamped(max_speed)
 
 func _physics_process(delta: float) -> void:
+	$Indicator.global_position = offset_target_pos()
+
 	velocity += Vector2(acceleration, 0).rotated(rotation) * delta
 	velocity += seek() * delta
 	velocity = velocity.clamped(max_speed)
@@ -35,17 +38,17 @@ func _physics_process(delta: float) -> void:
 	position += velocity * delta
 
 
-func seek():
-	var steer = Vector2.ZERO
-	var desired = Vector2.ZERO
-	
+func offset_target_pos() -> Vector2:
 	if target:
 		var offset = air_offset if target.spawn_in_air else ground_offset
-		desired = (target.global_position - global_position + offset).normalized() * acceleration
+		return target.global_position + offset
 	else:
-		desired = (target_position - global_position).normalized() * acceleration 
-	steer = (desired - velocity).normalized() * steer_force
-	return steer
+		return target_position
+
+func seek():
+	var steer = Vector2.ZERO
+	var desired = (offset_target_pos() - global_position).normalized() * acceleration
+	return (desired - velocity).normalized() * steer_force
 
 
 func explode() -> void:

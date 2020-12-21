@@ -2,7 +2,7 @@ extends Area2D
 
 signal spawn_object(explosion)
 
-const Explosion = preload("res://Entities/Chopper/Explosion/Explosion.tscn")
+const Explosion = preload("res://Entities/Chopper/Missile/Explosion.tscn")
 
 export var max_speed: int = 500
 export var acceleration: int = 350

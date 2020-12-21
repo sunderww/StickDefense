@@ -34,14 +34,14 @@ func get_disabled():
 
 func set_disabled(val):
 	_button.disabled = val
-	_margin_container.modulate.a = 0.5 if val else 1
+	_margin_container.modulate.a = 0.5 if val else 1.0
 
 func _pressed():
 	emit_signal("pressed")
 
-func set_text(text):
+func set_text(value):
 	if _label != null:
-		_label.text = text
+		_label.text = value
 	
 func get_text():
 	return _label.text if _label != null else ""

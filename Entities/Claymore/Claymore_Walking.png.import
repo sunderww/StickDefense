@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Explosion.png-1f49a7b37567a3cebbdffcc92d2e4f13.stex"
+path="res://.import/Claymore_Walking.png-e2b88158f37c3506a31e80e8a2cbadef.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Bazooka/Missile/Explosion.png"
-dest_files=[ "res://.import/Explosion.png-1f49a7b37567a3cebbdffcc92d2e4f13.stex" ]
+source_file="res://Entities/Claymore/Claymore_Walking.png"
+dest_files=[ "res://.import/Claymore_Walking.png-e2b88158f37c3506a31e80e8a2cbadef.stex" ]
 
 [params]
 

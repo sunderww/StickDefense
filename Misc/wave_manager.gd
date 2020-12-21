@@ -64,17 +64,18 @@ func _spawn_item(item: WaveItem) -> void:
 	emit_signal("spawn_enemy", enemy)
 
 var ENEMIES := [
-	# Enemy.new(path: String, lifetime: float, intensity: float, min_lvl: int = 0)
+	# Enemy.new(path: String, lifetime: float, intensity: float, weight: int, min_lvl: int = 0)
 	Enemy.new("res://Entities/Swordsman/Swordsman.tscn", 3, 3, 20),
-	Enemy.new("res://Entities/Infantry/EnemyInfantry.tscn", 8, 5, 10, 2),
-	Enemy.new("res://Entities/Chopper/Chopper.tscn", 15, 10, 2, 5),
+	Enemy.new("res://Entities/Infantry/EnemyInfantry.tscn", 8, 5, 10, 3),
+	Enemy.new("res://Entities/Claymore/Claymore.tscn", 3, 5, 5, 5),
+	Enemy.new("res://Entities/Chopper/Chopper.tscn", 15, 10, 2, 7),
 ] 
 
 func _get_available_enemies(level: int) -> Array:
 	var available: Array = []
 	
 	for enemy in ENEMIES:
-		if enemy.minimum_level < level:
+		if enemy.minimum_level <= level:
 			available.append(enemy)
 	return available
 

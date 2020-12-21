@@ -1,6 +1,9 @@
 extends Area2D
 
 
+class_name AreaExplosion
+
+
 signal request_shake
 signal request_freeze
 
@@ -37,5 +40,6 @@ func explode_on_body(body: PhysicsBody2D) -> void:
 		# Lower damage when the body is far away
 		var distance = global_position.distance_to(body.global_position)
 		var radius = $CollisionShape2D.shape.radius
-		var actual_damage = min(damage * (radius * 1.3 - distance) / radius, damage)
+		var actual_damage = min(damage * (radius * 1.5 - distance) / radius, damage)
+		actual_damage = max(actual_damage, float(damage) / 3.0)
 		body.suffer_attack(actual_damage)

@@ -18,7 +18,7 @@ func _process(_delta):
 	$ProgressBar.value = life_percentage
 	
 func suffer_attack(base_damage: int) -> void:
-	DebugService.debug("Tower suffered %d damage" % base_damage)
+	DebugService.silly("Tower suffered %d damage" % base_damage)
 	life -= base_damage
 	if life <= 0:
 		emit_signal("destroyed")

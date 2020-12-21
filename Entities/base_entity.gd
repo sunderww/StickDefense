@@ -108,7 +108,7 @@ func attack_target() -> void:
 func suffer_attack(base_damage: int) -> void:
 	if invincibility_time > 0:
 		return
-
+	
 	var animation = get_node_or_null("AnimationPlayer")
 	if animation:
 		animation.stop()

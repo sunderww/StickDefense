@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Explosion.png-ae24f30ea7e6890e268c0031a691c499.stex"
+path="res://.import/Claymore_Idle.png-79cdac2414f22f58c5d05596cf7ee3ec.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Chopper/Explosion/Explosion.png"
-dest_files=[ "res://.import/Explosion.png-ae24f30ea7e6890e268c0031a691c499.stex" ]
+source_file="res://Entities/Claymore/Claymore_Idle.png"
+dest_files=[ "res://.import/Claymore_Idle.png-79cdac2414f22f58c5d05596cf7ee3ec.stex" ]
 
 [params]
 

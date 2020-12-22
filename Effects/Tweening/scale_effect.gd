@@ -15,7 +15,7 @@ func _ready() -> void:
 	randomize()
 	
 	var parent := get_parent()
-	DebugService.debug("interpolate scale on %s" % parent.name)
+	DebugService.silly("interpolate scale on %s" % parent.name)
 	interpolate_property(
 		parent,
 		"scale",

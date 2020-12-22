@@ -78,7 +78,7 @@ func prepare_free() -> void:
 	# Calling queue_free now will cause particles to not exist anymore
 	# before being added to the root scene
 	call_deferred("queue_free")
-	DebugService.debug("%s freed" % name)
+	DebugService.silly("%s freed" % name)
 	freed = true
 
 

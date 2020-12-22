@@ -31,4 +31,3 @@ func _process(_delta: float) -> void:
 
 func _on_parent_AnimatedSprite_animation_finished() -> void:
 	can_attack = true
-	DebugService.debug("%s: Attack animation finished" % parent.name)

@@ -6,6 +6,7 @@ signal destroyed
 var max_life
 var life = 2000
 
+onready var animation := $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,5 +21,7 @@ func _process(_delta):
 func suffer_attack(base_damage: int) -> void:
 	DebugService.silly("Tower suffered %d damage" % base_damage)
 	life -= base_damage
+	animation.stop()
+	animation.play("hurt")
 	if life <= 0:
 		emit_signal("destroyed")

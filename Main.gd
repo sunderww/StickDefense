@@ -5,15 +5,43 @@ onready var freezer := $FrameFreezer
 onready var objects_node := $Objects
 onready var allies_node := $Allies
 onready var enemies_node := $Enemies
+onready var tween := $Tween
 
 var enemy_count: int
 
 func _ready() -> void:
 	PlayerVariables.coin = PlayerVariables.base_coin
+	yield(animate_start(), "completed")
 	start_next_wave()
 
 func _process(delta: float) -> void:
 	PlayerVariables.coin += PlayerVariables.coin_per_second * delta
+
+
+func _interpolate_start_position(node: Node2D, duration: float, delay: float) -> void:
+	var offset := Vector2(0, -850)
+	tween.interpolate_property(
+		node,
+		"position",
+		node.position + offset,
+		node.position,
+		duration,
+		Tween.TRANS_ELASTIC, 
+		Tween.EASE_IN_OUT,
+		delay
+	)
+	node.position += offset
+
+func animate_start() -> void:
+	_interpolate_start_position($LevelElements/Ground, 0.7, 0)
+	_interpolate_start_position($LevelElements/Background/Layer5, 1.1, 0.2)
+	_interpolate_start_position($LevelElements/Background/Layer4, 1.1, 0.4)
+	_interpolate_start_position($LevelElements/Background/Layer3, 1.1, 0.6)
+	_interpolate_start_position($LevelElements/Tower, 1.2, 0.7)
+	_interpolate_start_position($PanelContainer, 1.5, 1)
+
+	tween.start()
+	yield(tween, "tween_all_completed")
 
 
 func start_next_wave() -> void:

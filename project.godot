@@ -81,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="StickDefense"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Menu/GameMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

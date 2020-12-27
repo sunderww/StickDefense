@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Menu/credits.gd" type="Script" id=1]
+[ext_resource path="res://Resources/manaspc.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Resources/toggle_001.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Resources/confirmation_003.ogg" type="AudioStream" id=4]
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0.286275, 0.584314, 0.701961, 1, 0.85098, 0.945098, 0.972549, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 23
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="Credits" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Background"]
+position = Vector2( 531.742, 160.394 )
+rotation = -1.5708
+scale = Vector2( 0.449064, 1091.92 )
+texture = SubResource( 3 )
+
+[node name="Controls" type="Node2D" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="Controls"]
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Controls/CenterContainer"]
+margin_left = 512.0
+margin_top = 1155.0
+margin_right = 512.0
+margin_bottom = 1155.0
+bbcode_enabled = true
+bbcode_text = "Development : Lucas BERGOGNON
+Art & Music : Lucas BERGOGNON
+
+Thanks to all the people putting their artwork under CC license, but especially to :
+
+Kenney"
+text = "Development : Lucas BERGOGNON
+Art & Music : Lucas BERGOGNON
+
+Thanks to all the people putting their artwork under CC license, but especially to :
+
+Kenney"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="Controls"]
+margin_left = 15.118
+margin_top = 15.7479
+margin_right = 87.118
+margin_bottom = 45.7479
+custom_fonts/font = SubResource( 4 )
+text = "Back"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -22.0
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+[connection signal="mouse_entered" from="Controls/BackButton" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="Controls/BackButton" to="." method="_on_BackButton_pressed"]

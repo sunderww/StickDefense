@@ -1,5 +1,8 @@
 extends Node2D
 
+
+const GameOverScene = "res://Menu/GameOver.tscn"
+
 onready var camera := $ShakableCamera
 onready var freezer := $FrameFreezer
 onready var objects_node := $Objects
@@ -10,7 +13,7 @@ onready var tween := $Tween
 var enemy_count: int
 
 func _ready() -> void:
-	PlayerVariables.coin = PlayerVariables.base_coin
+	PlayerVariables.reset()
 	yield(animate_start(), "completed")
 	start_next_wave()
 
@@ -74,8 +77,7 @@ func _on_Enemy_died(coin_gain: int, score_gain: int) -> void:
 
 func _on_Tower_destroyed() -> void:
 	# Should show game over
-	DebugService.info("Game Over")
-	get_tree().quit()
+	get_tree().change_scene(GameOverScene)
 
 
 func _on_WaveManager_spawn_enemy(enemy: BaseEntity) -> void:

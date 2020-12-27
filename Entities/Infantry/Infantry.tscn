@@ -17,7 +17,7 @@
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 shader = ExtResource( 13 )
-shader_param/white_progress = 1.0
+shader_param/white_progress = 0.0
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4

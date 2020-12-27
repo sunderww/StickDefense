@@ -13,7 +13,7 @@ colors = PoolColorArray( 0.286275, 0.584314, 0.701961, 1, 0.85098, 0.945098, 0.9
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 40
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -24,7 +24,7 @@ script = ExtResource( 7 )
 
 [node name="Background" type="Node2D" parent="."]
 
-[node name="Layer2" type="Sprite" parent="Background"]
+[node name="Sprite" type="Sprite" parent="Background"]
 position = Vector2( 531.742, 160.394 )
 rotation = -1.5708
 scale = Vector2( 0.449064, 1091.92 )
@@ -78,7 +78,7 @@ margin_right = 201.0
 margin_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Play"
 flat = true
 align = 0
@@ -89,7 +89,7 @@ margin_right = 201.0
 margin_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Options"
 flat = true
 align = 0
@@ -100,7 +100,7 @@ margin_right = 201.0
 margin_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Credits"
 flat = true
 align = 0
@@ -111,7 +111,7 @@ margin_right = 201.0
 margin_bottom = 196.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "Exit"
 flat = true
 align = 0

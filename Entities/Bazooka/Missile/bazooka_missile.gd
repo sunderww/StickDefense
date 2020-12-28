@@ -46,7 +46,6 @@ func offset_target_pos() -> Vector2:
 		return target_position
 
 func seek():
-	var steer = Vector2.ZERO
 	var desired = (offset_target_pos() - global_position).normalized() * acceleration
 	return (desired - velocity).normalized() * steer_force
 

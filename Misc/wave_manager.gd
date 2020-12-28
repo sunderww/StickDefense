@@ -68,7 +68,7 @@ var ENEMIES := [
 	Enemy.new("res://Entities/Swordsman/Swordsman.tscn", 3, 3, 20),
 	Enemy.new("res://Entities/Infantry/EnemyInfantry.tscn", 8, 5, 10, 3),
 	Enemy.new("res://Entities/Claymore/Claymore.tscn", 3, 5, 5, 5),
-	Enemy.new("res://Entities/Chopper/Chopper.tscn", 15, 10, 2, 7),
+	Enemy.new("res://Entities/Chopper/Chopper.tscn", 20, 10, 2, 7),
 ] 
 
 func _get_available_enemies(level: int) -> Array:

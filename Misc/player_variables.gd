@@ -19,4 +19,7 @@ func reset() -> void:
 
 	score = 0
 	level = 0
-	
+
+	if DebugService.level == DebugService.LogLevel.SILLY:
+		level = 10
+		coin = 20000

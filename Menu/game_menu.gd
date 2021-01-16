@@ -25,7 +25,7 @@ func _on_Button_mouse_entered(index: int) -> void:
 	var pos_y = button.rect_global_position.y + button.rect_size.y / 2
 	selection.global_position.y = pos_y
 	selection.visible = true
-	$HoverSound.play()
+	AudioManager.play_effect("hover")
 
 
 func _on_Button_mouse_exited(_index: int) -> void:
@@ -37,8 +37,9 @@ func button_selected() -> void:
 		return
 
 	disable_buttons = true
-	$SelectSound.play()
 	$Selection.visible = false
+	yield(AudioManager.play_effect("select"), "completed")
+	
 
 
 func animate_scene_start() -> void:
@@ -73,7 +74,7 @@ func animate_scene_end(new_scene_path: String) -> void:
 	
 	tween.start()
 	yield(tween, "tween_all_completed")
-	get_tree().change_scene(new_scene_path)
+	assert(get_tree().change_scene(new_scene_path) == OK)
 	
 	
 
@@ -90,6 +91,5 @@ func show_credits() -> void:
 	animate_scene_end(CreditsScene)
 
 func exit():
-	button_selected()
-	yield($SelectSound, "finished")
+	yield(button_selected(), "completed")
 	get_tree().quit()

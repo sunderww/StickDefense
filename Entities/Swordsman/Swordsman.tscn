@@ -177,6 +177,7 @@ tracks/0/keys = {
 [node name="Swordsman" type="KinematicBody2D"]
 collision_mask = 0
 script = ExtResource( 3 )
+entity_name = "Swordsman"
 life = 90.0
 damage = 30.0
 RANGE_PX = 20
@@ -198,7 +199,7 @@ __meta__ = {
 material = SubResource( 2 )
 frames = SubResource( 25 )
 animation = "attacking"
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

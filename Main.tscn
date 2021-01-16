@@ -1,11 +1,10 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Tower/Tower.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Effects/Camera/ShakableCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI/Panel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Effects/frame_freezer.gd" type="Script" id=5]
-[ext_resource path="res://Resources/StickWar.wav" type="AudioStream" id=6]
 [ext_resource path="res://Misc/wave_manager.gd" type="Script" id=7]
 [ext_resource path="res://GUI/WaveIndicator.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Resources/Ground.png" type="Texture" id=9]
@@ -13,19 +12,19 @@
 [ext_resource path="res://Resources/Backgrounds - FREE/Background 07/PARALLAX/layer_06_1920 x 1080.png" type="Texture" id=14]
 [ext_resource path="res://Resources/Backgrounds - FREE/Background 07/PARALLAX/layer_05_1920 x 1080.png" type="Texture" id=15]
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.286275, 0.584314, 0.701961, 1, 0.85098, 0.945098, 0.972549, 1 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 0.141176, 0.360784, 0.0980392, 0.392157, 0.270588, 0.266667, 0.266667, 0.509804 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 723.126, 76 )
 
 [node name="Main" type="Node2D"]
@@ -39,7 +38,7 @@ script = ExtResource( 1 )
 position = Vector2( 531.742, 160.394 )
 rotation = -1.5708
 scale = Vector2( 0.449064, 1091.92 )
-texture = SubResource( 3 )
+texture = SubResource( 2 )
 
 [node name="Layer3" type="Sprite" parent="LevelElements/Background"]
 position = Vector2( 540.851, 315.997 )
@@ -82,11 +81,11 @@ __meta__ = {
 position = Vector2( 516.972, 549.479 )
 rotation = 1.5708
 scale = Vector2( 0.0802427, 1086.04 )
-texture = SubResource( 5 )
+texture = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelElements/Ground"]
 position = Vector2( 626.322, 528.186 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="Tower" parent="LevelElements" instance=ExtResource( 2 )]
 position = Vector2( 99.8085, 430.833 )
@@ -123,9 +122,6 @@ position = Vector2( 510, 300 )
 script = ExtResource( 5 )
 delay_ms = 90
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource( 7 )
 
@@ -139,6 +135,9 @@ scale = Vector2( 1e-05, 1e-05 )
 
 [node name="Panel" parent="PanelContainer" instance=ExtResource( 4 )]
 margin_bottom = 52.0
+
+[node name="PauseContainer" type="Node2D" parent="."]
+position = Vector2( 510.053, 299.617 )
 [connection signal="destroyed" from="LevelElements/Tower" to="." method="_on_Tower_destroyed"]
 [connection signal="spawn_enemy" from="WaveManager" to="." method="_on_WaveManager_spawn_enemy"]
 [connection signal="animation_finished" from="WaveIndicator" to="." method="_on_WaveIndicator_animation_finished"]

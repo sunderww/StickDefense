@@ -2,6 +2,7 @@ extends Node2D
 
 
 const GameOverScene = "res://Menu/GameOver.tscn"
+const PauseScene = preload("res://Menu/PauseMenu.tscn")
 
 onready var camera := $ShakableCamera
 onready var freezer := $FrameFreezer
@@ -10,15 +11,25 @@ onready var allies_node := $Allies
 onready var enemies_node := $Enemies
 onready var tween := $Tween
 
+var pause_instance: Node
+
 var enemy_count: int
 
 func _ready() -> void:
 	PlayerVariables.reset()
+	AudioManager.play_music()
 	yield(animate_start(), "completed")
 	start_next_wave()
 
 func _process(delta: float) -> void:
 	PlayerVariables.coin += PlayerVariables.coin_per_second * delta
+
+func _unhandled_key_input(event: InputEventKey) -> void:
+	if event.is_action_pressed("pause"):
+		pause_instance = PauseScene.instance()
+		assert(pause_instance.connect("exit_pause", self, "_on_Pause_exit") == OK)
+		$PauseContainer.add_child(pause_instance)
+		
 
 
 func _interpolate_start_position(node: Node2D, duration: float, delay: float) -> void:
@@ -55,11 +66,11 @@ func start_next_wave() -> void:
 
 func spawn_object(node: Node2D, parent_node=objects_node) -> void:
 	if node.has_signal("spawn_object"):
-		node.connect("spawn_object", self, "spawn_object")
+		assert(node.connect("spawn_object", self, "spawn_object") == 0)
 	if node.has_signal("request_shake"):
-		node.connect("request_shake", camera, "_on_shake_requested")
+		assert(node.connect("request_shake", camera, "_on_shake_requested") == 0)
 	if node.has_signal("request_freeze"):
-		node.connect("request_freeze", freezer, "_on_freeze_requested")
+		assert(node.connect("request_freeze", freezer, "_on_freeze_requested") == 0)
 	parent_node.call_deferred("add_child", node)
 
 
@@ -69,15 +80,16 @@ func _on_Enemy_tree_exited() -> void:
 		start_next_wave()
 
 
-func _on_Enemy_died(coin_gain: int, score_gain: int) -> void:
+func _on_Enemy_died(name: String, coin_gain: int, score_gain: int) -> void:
 	DebugService.debug("gained %d coin and %d score" % [coin_gain, score_gain])
 	PlayerVariables.coin += coin_gain
 	PlayerVariables.score += score_gain
+	PlayerVariables.enemy_killed(name)
 
 
 func _on_Tower_destroyed() -> void:
 	# Should show game over
-	get_tree().change_scene(GameOverScene)
+	assert(get_tree().change_scene(GameOverScene) == 0)
 
 
 func _on_WaveManager_spawn_enemy(enemy: BaseEntity) -> void:
@@ -87,15 +99,15 @@ func _on_WaveManager_spawn_enemy(enemy: BaseEntity) -> void:
 		enemy.position = $Spawn/EnemyAir.position
 	else:
 		enemy.position = $Spawn/EnemyGround.position
-	enemy.connect("enemy_died", self, "_on_Enemy_died")
-	enemy.connect("tree_exited", self, "_on_Enemy_tree_exited")
+	assert(enemy.connect("enemy_died", self, "_on_Enemy_died") == 0)
+	assert(enemy.connect("tree_exited", self, "_on_Enemy_tree_exited") == 0)
 	spawn_object(enemy, enemies_node)
 
 
 func _on_Panel_item_purchased(purchase):
 	var scene = load(purchase.resource)
-	PlayerVariables.coin -= purchase.price
 
+	PlayerVariables.purchase_item(purchase)
 	DebugService.info("spawn %s" % purchase.title)
 	var node: Node2D = scene.instance()
 	if node.spawn_in_air:
@@ -108,3 +120,7 @@ func _on_Panel_item_purchased(purchase):
 
 func _on_WaveIndicator_animation_finished():
 	$WaveManager.start(PlayerVariables.level)
+
+
+func _on_Pause_exit() -> void:
+	pause_instance.queue_free()

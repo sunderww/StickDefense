@@ -1,22 +1,20 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Resources/manaspc.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Menu/game_over.gd" type="Script" id=2]
-[ext_resource path="res://Resources/toggle_001.ogg" type="AudioStream" id=3]
-[ext_resource path="res://Resources/confirmation_003.ogg" type="AudioStream" id=4]
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.286275, 0.584314, 0.701961, 1, 0.85098, 0.945098, 0.972549, 1 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 60
 outline_size = 1
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="DynamicFont" id=5]
 size = 20
@@ -24,15 +22,15 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id=6]
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 size = 40
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id=8]
 
 [node name="GameOver" type="Node2D"]
 script = ExtResource( 2 )
@@ -43,7 +41,7 @@ script = ExtResource( 2 )
 position = Vector2( 531.742, 160.394 )
 rotation = -1.5708
 scale = Vector2( 0.449064, 1091.92 )
-texture = SubResource( 3 )
+texture = SubResource( 2 )
 
 [node name="Controls" type="Node2D" parent="."]
 
@@ -63,7 +61,7 @@ margin_bottom = 450.0
 [node name="Label" type="Label" parent="Controls/CenterContainer/VBoxContainer"]
 margin_right = 360.0
 margin_bottom = 123.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 text = "Game Over
 :("
@@ -73,7 +71,7 @@ align = 1
 margin_top = 127.0
 margin_right = 360.0
 margin_bottom = 159.0
-custom_styles/separator = SubResource( 7 )
+custom_styles/separator = SubResource( 4 )
 custom_constants/separation = 32
 __meta__ = {
 "_edit_use_anchors_": false
@@ -91,7 +89,7 @@ align = 1
 margin_top = 187.0
 margin_right = 360.0
 margin_bottom = 251.0
-custom_styles/separator = SubResource( 8 )
+custom_styles/separator = SubResource( 6 )
 custom_constants/separation = 64
 __meta__ = {
 "_edit_use_anchors_": false
@@ -109,7 +107,7 @@ alignment = 1
 margin_left = 10.0
 margin_right = 157.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 text = "Retry"
 flat = true
 
@@ -117,26 +115,18 @@ flat = true
 margin_left = 161.0
 margin_right = 225.0
 margin_bottom = 46.0
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 8 )
 custom_constants/separation = 64
 
 [node name="ExitButton" type="Button" parent="Controls/CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 229.0
 margin_right = 349.0
 margin_bottom = 46.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 text = "Exit"
 flat = true
 
 [node name="Tween" type="Tween" parent="."]
-
-[node name="HoverSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-volume_db = -22.0
-
-[node name="SelectSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-volume_db = -10.0
 [connection signal="mouse_entered" from="Controls/CenterContainer/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="Controls/CenterContainer/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_RetryButton_pressed"]
 [connection signal="mouse_entered" from="Controls/CenterContainer/VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_Button_mouse_entered"]

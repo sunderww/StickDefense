@@ -12,6 +12,8 @@ var disable_buttons: bool = false
 
 func _ready():
 	label.text = "%s %d" % [label.text, PlayerVariables.score]
+	DebugService.info(PlayerVariables.killed)
+	DebugService.info(PlayerVariables.spawned)
 
 
 func _animate_scene_end(new_scene_path) -> void:
@@ -42,7 +44,7 @@ func button_pressed() -> void:
 	if disable_buttons:
 		return
 
-	$SelectSound.play()
+	AudioManager.play_effect("select")
 	disable_buttons = true
 
 func _on_RetryButton_pressed():
@@ -57,4 +59,4 @@ func _on_ExitButton_pressed():
 
 
 func _on_Button_mouse_entered():
-	$HoverSound.play()
+	AudioManager.play_effect("hover")

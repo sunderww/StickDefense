@@ -3,9 +3,11 @@ extends KinematicBody2D
 class_name BaseEntity
 
 signal spawn_object(node)
-signal enemy_died(coin_gain, score_gain)
+signal enemy_died(name, coin_gain, score_gain)
 
 var state: State
+
+export var entity_name: String
 
 var max_life: float
 export var life: float = 100
@@ -130,7 +132,7 @@ func die() -> void:
 	
 	if is_enemy:
 		var score = score_gain / (lifetime/10.0 + 1)
-		emit_signal("enemy_died", coin_gain, score)
+		emit_signal("enemy_died", entity_name, coin_gain, score)
 
 	queue_free()
 

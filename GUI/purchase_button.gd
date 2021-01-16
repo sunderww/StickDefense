@@ -20,5 +20,5 @@ func _process(_delta):
 
 func _on_PurchaseButton_pressed():
 	emit_signal("item_purchased", purchase)
-	$AudioStreamPlayer.play()
+	AudioManager.play_effect("select")
 

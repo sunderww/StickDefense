@@ -1,19 +1,17 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Resources/UI/Arrow_Right.png" type="Texture" id=1]
 [ext_resource path="res://Resources/UI/Arrow_Left.png" type="Texture" id=2]
 [ext_resource path="res://Resources/manaspc.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Menu/game_menu.gd" type="Script" id=7]
-[ext_resource path="res://Resources/toggle_001.ogg" type="AudioStream" id=8]
-[ext_resource path="res://Resources/confirmation_003.ogg" type="AudioStream" id=9]
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.286275, 0.584314, 0.701961, 1, 0.85098, 0.945098, 0.972549, 1 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=3]
 size = 40
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -28,7 +26,7 @@ script = ExtResource( 7 )
 position = Vector2( 531.742, 160.394 )
 rotation = -1.5708
 scale = Vector2( 0.449064, 1091.92 )
-texture = SubResource( 3 )
+texture = SubResource( 2 )
 
 [node name="Selection" type="Node2D" parent="."]
 visible = false
@@ -43,14 +41,6 @@ texture = ExtResource( 1 )
 visible = false
 texture = ExtResource( 2 )
 offset = Vector2( 70, 0 )
-
-[node name="HoverSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
-volume_db = -22.0
-
-[node name="SelectSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
-volume_db = -10.0
 
 [node name="Controls" type="Node2D" parent="."]
 
@@ -78,7 +68,7 @@ margin_right = 201.0
 margin_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 text = "Play"
 flat = true
 align = 0
@@ -89,7 +79,7 @@ margin_right = 201.0
 margin_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 text = "Options"
 flat = true
 align = 0
@@ -100,7 +90,7 @@ margin_right = 201.0
 margin_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 text = "Credits"
 flat = true
 align = 0
@@ -111,7 +101,7 @@ margin_right = 201.0
 margin_bottom = 196.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
 text = "Exit"
 flat = true
 align = 0

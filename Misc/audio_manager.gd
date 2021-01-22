@@ -12,6 +12,8 @@ var effects_volume := 0.8  setget set_effects_volume
 onready var effects := {
 	"hover": $Effects/Hover,
 	"select": $Effects/Select,
+	"explosion": $Effects/Explosion,
+	"tower_explosion": $Effects/TowerExplosion,
 }
 
 onready var base_volumes = _get_base_volumes()
@@ -29,9 +31,9 @@ func _ready() -> void:
 func play_music() -> void:
 	$MusicPlayer.play()
 
-
 func stop_music() -> void:
 	$MusicPlayer.stop()
+
 
 func play_effect(name: String) -> void:
 	if not effects.has(name):

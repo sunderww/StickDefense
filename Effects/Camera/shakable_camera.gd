@@ -9,6 +9,8 @@ export(float, EASE) var damp_easing := 1.0
 
 export var enabled: bool = true
 
+var old_duration: float = -1
+
 
 func _ready() -> void:
 	randomize()
@@ -22,6 +24,13 @@ func _process(_delta: float) -> void:
 		rand_range(-amplitude, amplitude) * damping,
 		rand_range(-amplitude, amplitude) * damping
 	)
+
+
+func shake_for(time: float) -> void:
+	old_duration = duration
+	_set_duration(time)
+	_set_shake(true)
+	
 
 
 func _set_duration(value: float) -> void:
@@ -48,3 +57,7 @@ func _on_shake_requested() -> void:
 
 func _on_Timer_timeout() -> void:
 	self.shake = false
+	
+	if old_duration > 0:
+		duration = old_duration
+		old_duration = -1

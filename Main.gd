@@ -94,8 +94,17 @@ func _on_Enemy_died(name: String, coin_gain: int, score_gain: int) -> void:
 
 
 func _on_Tower_destroyed() -> void:
-	# Should show game over
-	assert(get_tree().change_scene(GameOverScene) == 0)
+	AudioManager.stop_music()
+	AudioManager.play_effect("tower_explosion")
+	
+	camera.shake_for(1.3)
+	freezer.freeze(250)
+	
+	var animation_player: AnimationPlayer = $Explosion/AnimationPlayer
+	animation_player.play("explode")
+	
+	yield(animation_player, "animation_finished")
+	assert(get_tree().change_scene(GameOverScene) == OK)
 
 
 func _on_WaveManager_spawn_enemy(enemy: BaseEntity) -> void:

@@ -3,6 +3,7 @@ extends Node2D
 
 const MainScene = "res://Main.tscn"
 const MenuScene = "res://Menu/GameMenu.tscn"
+const ScoreScene = "res://Menu/HighScores.tscn"
 
 
 onready var label := $Controls/CenterContainer/VBoxContainer/ScoreLabel
@@ -35,7 +36,7 @@ func _animate_scene_end(new_scene_path) -> void:
 	yield(tween, "tween_all_completed")
 	
 	if new_scene_path:
-		get_tree().change_scene(new_scene_path)
+		assert(get_tree().change_scene(new_scene_path) == OK)
 	else:
 		get_tree().quit()
 
@@ -47,6 +48,12 @@ func button_pressed() -> void:
 	AudioManager.play_effect("select")
 	disable_buttons = true
 
+
+func _on_ScoreButton_pressed():
+	button_pressed()
+	_animate_scene_end(ScoreScene)
+
+
 func _on_RetryButton_pressed():
 	button_pressed()
 	_animate_scene_end(MainScene)
@@ -57,6 +64,6 @@ func _on_ExitButton_pressed():
 	_animate_scene_end(MenuScene)
 
 
-
 func _on_Button_mouse_entered():
 	AudioManager.play_effect("hover")
+

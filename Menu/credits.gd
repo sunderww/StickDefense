@@ -10,7 +10,23 @@ var disable_buttons: bool = false
 
 
 func _ready():
-	pass
+	_animate_scene_start()
+
+
+func _animate_scene_start() -> void:
+	var controls = $Controls
+	tween.interpolate_property(
+		controls,
+		"position",
+		controls.position - Vector2(0, 650),
+		controls.position,
+		0.7,
+		Tween.TRANS_ELASTIC, 
+		Tween.EASE_IN_OUT,
+		0
+	)
+	controls.position -= Vector2(0, 650)
+	tween.start()
 
 
 func _animate_scene_end(new_scene_path: String) -> void:
@@ -22,7 +38,7 @@ func _animate_scene_end(new_scene_path: String) -> void:
 		"position",
 		controls.position,
 		controls.position + Vector2(0, 650),
-		0.8,
+		0.6,
 		Tween.TRANS_ELASTIC, 
 		Tween.EASE_IN_OUT,
 		0.1
@@ -31,14 +47,14 @@ func _animate_scene_end(new_scene_path: String) -> void:
 	tween.start()
 	yield(tween, "tween_all_completed")
 	
-	get_tree().change_scene(new_scene_path)
+	assert(get_tree().change_scene(new_scene_path) == OK)
 
 
 func button_pressed() -> void:
 	if disable_buttons:
 		return
 
-	$SelectSound.play()
+	AudioManager.play_effect("select")
 	disable_buttons = true
 
 
@@ -48,4 +64,4 @@ func _on_BackButton_pressed():
 
 
 func _on_Button_mouse_entered():
-	$HoverSound.play()
+	AudioManager.play_effect("hover")

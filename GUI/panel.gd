@@ -2,7 +2,7 @@ extends PanelContainer
 
 signal item_purchased(purchase)
 
-var PurchaseButton = load("res://GUI/PurchaseButton.tscn")
+var PurchaseButton = preload("res://GUI/PurchaseButton.tscn")
 
 
 # Called when the node enters the scene tree for the first time.

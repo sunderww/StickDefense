@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Menu/credits.gd" type="Script" id=1]
 [ext_resource path="res://Resources/manaspc.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Resources/Sound/toggle_001.ogg" type="AudioStream" id=3]
-[ext_resource path="res://Resources/Sound/confirmation_003.ogg" type="AudioStream" id=4]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.286275, 0.584314, 0.701961, 1, 0.85098, 0.945098, 0.972549, 1 )
@@ -72,13 +70,5 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
-
-[node name="HoverSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-volume_db = -22.0
-
-[node name="SelectSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-volume_db = -10.0
 [connection signal="mouse_entered" from="Controls/BackButton" to="." method="_on_Button_mouse_entered"]
 [connection signal="pressed" from="Controls/BackButton" to="." method="_on_BackButton_pressed"]

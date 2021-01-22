@@ -1,6 +1,8 @@
 extends Node
 
 
+signal effect_finished(name)
+
 const VolumeFilePath := "user://settings.json"
 
 
@@ -18,11 +20,18 @@ onready var base_music_volume = $MusicPlayer.volume_db
 
 func _ready() -> void:
 	load_volumes()
+	
+	for key in effects.keys():
+		var effect: AudioStreamPlayer = effects[key]
+		assert(effect.connect("finished", self, "_on_Effect_finished", [key]) == OK)
 
 
 func play_music() -> void:
 	$MusicPlayer.play()
 
+
+func stop_music() -> void:
+	$MusicPlayer.stop()
 
 func play_effect(name: String) -> void:
 	if not effects.has(name):
@@ -31,6 +40,7 @@ func play_effect(name: String) -> void:
 	
 	var player: AudioStreamPlayer = effects[name]
 	player.play()
+	DebugService.info("Playing effect %s" % name)
 	yield(player, "finished")
 
 
@@ -85,7 +95,7 @@ func set_effects_volume(value: float) -> void:
 
 func _volume_percent_as_db(base: float, percentage: float) -> float:
 	DebugService.debug("base %f ; percent %f = %f" % [base, percentage, 100.0 * percentage - 80.0 + base])
-	return 100.0 * percentage - 80.0 + base
+	return 50.0 * percentage - 40.0 + base
 
 
 func _get_base_volumes() -> Dictionary:
@@ -96,3 +106,7 @@ func _get_base_volumes() -> Dictionary:
 		dict[key] = volume
 	
 	return dict
+
+
+func _on_Effect_finished(name: String) -> void:
+	emit_signal("effect_finished", name)

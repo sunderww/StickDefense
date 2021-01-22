@@ -21,8 +21,14 @@ func _ready() -> void:
 	yield(animate_start(), "completed")
 	start_next_wave()
 
+
+func _exit_tree() -> void:
+	AudioManager.stop_music()
+
+
 func _process(delta: float) -> void:
 	PlayerVariables.coin += PlayerVariables.coin_per_second * delta
+
 
 func _unhandled_key_input(event: InputEventKey) -> void:
 	if event.is_action_pressed("pause"):

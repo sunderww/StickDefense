@@ -16,7 +16,7 @@ func _ready() -> void:
 	
 	var parent := get_parent()
 	DebugService.silly("interpolate scale on %s" % parent.name)
-	interpolate_property(
+	assert(interpolate_property(
 		parent,
 		"scale",
 		Vector2.ZERO,
@@ -24,11 +24,11 @@ func _ready() -> void:
 		rand_range(min_time, max_time),
 		TRANS_CUBIC,
 		EASE_OUT
-	)
-	start()
+	) == true)
+	assert(start() == true)
 
 
 func set_enabled(value: bool) -> void:
 	enabled = value
 	if not value:
-		stop_all()
+		assert(stop_all() == true)

@@ -94,7 +94,9 @@ func set_effects_volume(value: float) -> void:
 
 
 func _volume_percent_as_db(base: float, percentage: float) -> float:
-	DebugService.debug("base %f ; percent %f = %f" % [base, percentage, 100.0 * percentage - 80.0 + base])
+	if percentage == 0:
+		DebugService.info("Volume at 0%. Returning -80 dB")
+		return -80.0
 	return 50.0 * percentage - 40.0 + base
 
 

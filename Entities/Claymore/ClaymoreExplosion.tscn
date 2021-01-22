@@ -1,9 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Resources/Sound/explosion.wav" type="AudioStream" id=1]
 [ext_resource path="res://Common/Explosion/Explosion.png" type="Texture" id=2]
 [ext_resource path="res://Common/Explosion/explosion.gd" type="Script" id=3]
-
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 39.8656
@@ -84,9 +82,4 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 14 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
-volume_db = -16.0
-autoplay = true
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

@@ -14,6 +14,7 @@ var damage
 var damage_happened: bool = false
 
 func _ready() -> void:
+	AudioManager.play_effect("explosion")
 	$AnimatedSprite.playing = true
 	emit_signal("request_shake")
 	emit_signal("request_freeze")

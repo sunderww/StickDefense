@@ -14,6 +14,8 @@ onready var effects := {
 	"select": $Effects/Select,
 	"explosion": $Effects/Explosion,
 	"tower_explosion": $Effects/TowerExplosion,
+	"shoot": $Effects/Shoot,
+	"unit_dying": $Effects/UnitDying,
 }
 
 onready var base_volumes = _get_base_volumes()
@@ -40,9 +42,18 @@ func play_effect(name: String) -> void:
 		DebugService.error("Can't play sound effect '%s'" % name)
 		return
 	
+	if effects_volume == 0:
+		DebugService.debug("Volume is at 0. Ignoring sound effect %s" % name)
+		return
+	
 	var player: AudioStreamPlayer = effects[name]
-	player.play()
-	DebugService.info("Playing effect %s" % name)
+	if player is RandomizedStreamPlayer:
+		DebugService.debug("Playing randomized effect %s" % name)
+		player.play_random()
+	else:
+		DebugService.debug("Playing effect %s" % name)
+		player.play()
+	
 	yield(player, "finished")
 
 

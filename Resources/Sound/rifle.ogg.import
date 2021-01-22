@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/rifle.ogg-67fcfe6ccfb59a5ec81a9c7813adafd9.oggstr"
+
+[deps]
+
+source_file="res://Resources/Sound/rifle.ogg"
+dest_files=[ "res://.import/rifle.ogg-67fcfe6ccfb59a5ec81a9c7813adafd9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

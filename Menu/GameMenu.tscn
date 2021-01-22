@@ -4,7 +4,7 @@
 [ext_resource path="res://Resources/manaspc.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Menu/game_menu.gd" type="Script" id=7]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 40
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -30,7 +30,7 @@ margin_right = 201.0
 margin_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Play"
 flat = true
 align = 0
@@ -41,7 +41,7 @@ margin_right = 201.0
 margin_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Score"
 flat = true
 align = 0
@@ -52,7 +52,7 @@ margin_right = 201.0
 margin_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Options"
 flat = true
 align = 0
@@ -63,7 +63,7 @@ margin_right = 201.0
 margin_bottom = 196.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Credits"
 flat = true
 align = 0
@@ -74,7 +74,7 @@ margin_right = 201.0
 margin_bottom = 246.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Exit"
 flat = true
 align = 0

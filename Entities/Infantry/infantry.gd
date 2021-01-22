@@ -54,7 +54,7 @@ func shoot(bullet: Bullet) -> void:
 	bullets -= 1
 	bullet.damage = bullet_damage
 
-	$RandomizedStreamPlayer.play_random()
+	AudioManager.play_effect("shoot")
 
 	# Alternate between 2 particles in case one is not finished
 	if shell_particles.emitting:

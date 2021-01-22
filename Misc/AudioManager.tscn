@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Misc/audio_manager.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Sound/confirmation_003.ogg" type="AudioStream" id=2]
@@ -6,6 +6,11 @@
 [ext_resource path="res://Resources/Sound/MainMusic-Loop.wav" type="AudioStream" id=4]
 [ext_resource path="res://Resources/Sound/Tower_explosion.wav" type="AudioStream" id=5]
 [ext_resource path="res://Resources/Sound/explosion.wav" type="AudioStream" id=6]
+[ext_resource path="res://Effects/Sound/randomized_stream_player.gd" type="Script" id=7]
+[ext_resource path="res://Resources/Sound/rifle.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Resources/Sound/rifle2.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Resources/Sound/rifle3.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Resources/Sound/dying.wav" type="AudioStream" id=11]
 
 [node name="AudioManager" type="Node"]
 pause_mode = 2
@@ -13,6 +18,7 @@ script = ExtResource( 1 )
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -10.0
 
 [node name="Effects" type="Node" parent="."]
 
@@ -24,8 +30,27 @@ volume_db = -22.0
 stream = ExtResource( 2 )
 volume_db = -10.0
 
-[node name="Explosion" type="AudioStreamPlayer" parent="Effects"]
-stream = ExtResource( 6 )
-
 [node name="TowerExplosion" type="AudioStreamPlayer" parent="Effects"]
 stream = ExtResource( 5 )
+volume_db = -8.0
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Effects"]
+volume_db = -35.0
+script = ExtResource( 7 )
+sound_list = [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]
+min_pitch = 0.6
+max_pitch = 1.8
+
+[node name="UnitDying" type="AudioStreamPlayer" parent="Effects"]
+volume_db = -20.0
+script = ExtResource( 7 )
+sound_list = [ ExtResource( 11 ) ]
+min_pitch = 0.9
+max_pitch = 1.1
+
+[node name="Explosion" type="AudioStreamPlayer" parent="Effects"]
+volume_db = -14.0
+script = ExtResource( 7 )
+sound_list = [ ExtResource( 6 ) ]
+min_pitch = 0.8
+max_pitch = 1.2

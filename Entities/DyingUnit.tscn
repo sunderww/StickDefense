@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Entities/dying_unit.gd" type="Script" id=1]
-[ext_resource path="res://Entities/Infantry/Resources/dying.wav" type="AudioStream" id=2]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0, 0, 1, 0.612783, 0.0689225, 0.0689225, 1 )
@@ -67,8 +66,4 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
-volume_db = -20.0
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

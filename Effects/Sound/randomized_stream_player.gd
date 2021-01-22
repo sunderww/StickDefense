@@ -17,11 +17,19 @@ func _ready() -> void:
 func _random_index() -> int:
 	return int(rand_range(0, sound_list.size() - 1))
 
-func play_random() -> void:
+func play_random() -> void:	
 	stop()
-
+	
 	var index = _random_index()
-	pitch_scale = rand_range(min_pitch, max_pitch)
-
-	stream = sound_list[index]
-	play()
+	
+	var player = AudioStreamPlayer.new()
+	player.volume_db = volume_db
+	player.pitch_scale = rand_range(min_pitch, max_pitch)
+	player.stream = sound_list[index]
+	add_child(player)
+	
+	player.play()
+	DebugService.debug("RandomizedStreamPlayer: playing sound %d at pitch %f" % [index, player.pitch_scale])
+	
+	yield(player, "finished")
+	player.queue_free()

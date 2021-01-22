@@ -14,7 +14,7 @@ func enter(parent) -> void:
 	.enter(parent)
 	current_target = parent.target
 	sprite = parent.get_node("AnimatedSprite") as AnimatedSprite
-	sprite.connect("animation_finished", self, "_on_parent_AnimatedSprite_animation_finished")
+	assert(sprite.connect("animation_finished", self, "_on_parent_AnimatedSprite_animation_finished") == OK)
 	
 func exit() -> void:
 	sprite.disconnect("animation_finished", self, "_on_parent_AnimatedSprite_animation_finished")

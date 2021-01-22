@@ -14,3 +14,4 @@ func _on_MusicSlider_value_changed(value):
 
 func _on_EffectsSlider_value_changed(value):
 	AudioManager.effects_volume = value/100.0
+	AudioManager.play_effect("hover")

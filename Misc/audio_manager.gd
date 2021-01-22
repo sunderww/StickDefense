@@ -97,7 +97,7 @@ func _volume_percent_as_db(base: float, percentage: float) -> float:
 	if percentage == 0:
 		DebugService.info("Volume at 0%. Returning -80 dB")
 		return -80.0
-	return 50.0 * percentage - 40.0 + base
+	return 60.0 * percentage - 40.0 + base
 
 
 func _get_base_volumes() -> Dictionary:

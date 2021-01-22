@@ -14,7 +14,6 @@ var disable_buttons: bool = false
 func _ready():
 	$Controls/BackButton.visible = has_back_button
 	_animate_scene_start()
-	print($Controls/BackButton)
 
 
 func _animate_scene_start() -> void:

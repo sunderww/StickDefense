@@ -17,7 +17,6 @@ func _on_ContinueButton_pressed():
 
 func _on_ContinueButton_mouse_entered():
 	AudioManager.play_effect("hover")
-	print("hover")
 
 
 func _on_ExitButton_pressed():

@@ -2,6 +2,8 @@ extends Node
 
 const ScoreFilePath := "user://scores.json"
 
+const MAX_SCORES = 10
+
 
 func load_scores() -> Array:
 	DebugService.info("Loading scores...")
@@ -35,3 +37,8 @@ func save_scores(scores: Array) -> void:
 	DebugService.debug("%s" % data)
 	
 	file.close()
+
+
+static func sort_scores(a, b) -> bool:
+	return a["score"] < b["score"]
+

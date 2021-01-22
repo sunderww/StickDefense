@@ -96,6 +96,7 @@ PurchaseManager="*res://Misc/purchase_manager.gd"
 PlayerVariables="*res://Misc/player_variables.gd"
 DebugService="*res://Misc/debug_service.gd"
 AudioManager="*res://Misc/AudioManager.tscn"
+ScoreService="*res://Misc/score_service.gd"
 
 [display]
 

@@ -93,7 +93,6 @@ func _on_Enemy_died(name: String, coin_gain: int, score_gain: int) -> void:
 
 
 func _on_Tower_destroyed() -> void:
-	AudioManager.stop_music()
 	AudioManager.play_effect("tower_explosion")
 	
 	camera.shake_for(1.3)
@@ -103,6 +102,7 @@ func _on_Tower_destroyed() -> void:
 	animation_player.play("explode")
 	
 	yield(animation_player, "animation_finished")
+	AudioManager.stop_music()
 	assert(get_tree().change_scene(GameOverScene) == OK)
 
 

@@ -120,11 +120,10 @@ collision_layer = 33
 
 [node name="TextureRect" type="TextureRect" parent="LevelElements/Ground"]
 margin_left = -26.0
-margin_top = 424.0
+margin_top = 419.0
 margin_right = 1032.0
 margin_bottom = 616.0
 texture = ExtResource( 9 )
-expand = true
 stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false

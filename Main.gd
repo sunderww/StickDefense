@@ -35,7 +35,6 @@ func _unhandled_key_input(event: InputEventKey) -> void:
 		pause_instance = PauseScene.instance()
 		assert(pause_instance.connect("exit_pause", self, "_on_Pause_exit") == OK)
 		$PauseContainer.add_child(pause_instance)
-		
 
 
 func _interpolate_start_position(node: Node2D, duration: float, delay: float) -> void:

@@ -54,9 +54,9 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Controls/CenterContainer"]
 margin_left = 219.0
-margin_top = 149.0
+margin_top = 107.0
 margin_right = 804.0
-margin_bottom = 450.0
+margin_bottom = 492.0
 
 [node name="Label" type="Label" parent="Controls/CenterContainer/VBoxContainer"]
 margin_right = 585.0
@@ -88,7 +88,33 @@ align = 1
 [node name="HSeparator2" type="HSeparator" parent="Controls/CenterContainer/VBoxContainer"]
 margin_top = 187.0
 margin_right = 585.0
-margin_bottom = 251.0
+margin_bottom = 219.0
+custom_styles/separator = SubResource( 4 )
+custom_constants/separation = 32
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KilledLabel" type="Label" parent="Controls/CenterContainer/VBoxContainer"]
+margin_top = 223.0
+margin_right = 585.0
+margin_bottom = 243.0
+custom_fonts/font = SubResource( 5 )
+text = "You killed X units"
+align = 1
+
+[node name="LostLabel" type="Label" parent="Controls/CenterContainer/VBoxContainer"]
+margin_top = 247.0
+margin_right = 585.0
+margin_bottom = 267.0
+custom_fonts/font = SubResource( 5 )
+text = "You lost X units"
+align = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Controls/CenterContainer/VBoxContainer"]
+margin_top = 271.0
+margin_right = 585.0
+margin_bottom = 335.0
 custom_styles/separator = SubResource( 6 )
 custom_constants/separation = 64
 __meta__ = {
@@ -96,9 +122,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Controls/CenterContainer/VBoxContainer"]
-margin_top = 255.0
+margin_top = 339.0
 margin_right = 585.0
-margin_bottom = 301.0
+margin_bottom = 385.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1

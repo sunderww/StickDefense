@@ -6,7 +6,9 @@ const MenuScene = "res://Menu/GameMenu.tscn"
 const ScoreScene = "res://Menu/HighScores.tscn"
 
 
-onready var label := $Controls/CenterContainer/VBoxContainer/ScoreLabel
+onready var score_label := $Controls/CenterContainer/VBoxContainer/ScoreLabel
+onready var killed_label := $Controls/CenterContainer/VBoxContainer/KilledLabel
+onready var lost_label := $Controls/CenterContainer/VBoxContainer/LostLabel
 onready var tween := $Tween
 
 var score_info: Dictionary
@@ -21,13 +23,11 @@ func _ready() -> void:
 		"level": PlayerVariables.level,
 	}
 
-	save_score()
-	label.text = "%s %d" % [label.text, PlayerVariables.score]
-	DebugService.info(PlayerVariables.killed)
-	DebugService.info(PlayerVariables.spawned)
+	_save_score()
+	_set_labels()
 
 
-func save_score() -> void:
+func _save_score() -> void:
 	var scores = ScoreService.load_scores()
 	scores.append(score_info)
 	scores.sort_custom(ScoreService, "sort_scores")
@@ -36,9 +36,29 @@ func save_score() -> void:
 		DebugService.info("Removing last score")
 		scores.pop_back()
 	else:
-		DebugService.info("There %d < %d scores" % [len(scores), ScoreService.MAX_SCORES])
+		DebugService.info("There is %d < %d scores" % [len(scores), ScoreService.MAX_SCORES])
 	
 	ScoreService.save_scores(scores)
+
+
+func _set_labels() -> void:
+	score_label.text = "%s %d" % [score_label.text, PlayerVariables.score]
+	
+	var comma := ""
+	var text := "Killed: "
+	for unit_name in PlayerVariables.killed.keys():
+		var number = PlayerVariables.killed[unit_name]
+		text += "%s%d %s" % [comma, number, unit_name]
+		comma = ", "
+	killed_label.text = text
+	
+	comma = ""
+	text = "Lost: "
+	for unit_name in PlayerVariables.spawned.keys():
+		var number = PlayerVariables.killed[unit_name]
+		text += "%s%d %s" % [comma, number, unit_name]
+		comma = ", "
+	lost_label.text = text
 
 
 func _animate_scene_end(new_scene_path) -> void:

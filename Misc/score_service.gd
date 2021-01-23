@@ -40,5 +40,5 @@ func save_scores(scores: Array) -> void:
 
 
 static func sort_scores(a, b) -> bool:
-	return a["score"] < b["score"]
+	return a["score"] > b["score"]
 

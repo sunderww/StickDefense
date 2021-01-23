@@ -55,7 +55,7 @@ func _set_labels() -> void:
 	comma = ""
 	text = "Lost: "
 	for unit_name in PlayerVariables.spawned.keys():
-		var number = PlayerVariables.killed[unit_name]
+		var number = PlayerVariables.spawned[unit_name]
 		text += "%s%d %s" % [comma, number, unit_name]
 		comma = ", "
 	lost_label.text = text

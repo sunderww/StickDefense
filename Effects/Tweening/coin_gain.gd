@@ -13,6 +13,7 @@ var velocity = Vector2.ZERO
 var coins: int
 
 func _ready() -> void:
+	#warning-ignore:integer_division
 	var side_movement = randi() % randomness_x - randomness_x / 2
 	velocity = Vector2(side_movement, velocity_y)
 	scale = initial_scale

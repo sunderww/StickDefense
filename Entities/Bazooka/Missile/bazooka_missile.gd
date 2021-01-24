@@ -1,58 +1,80 @@
-extends Area2D
+extends Path2D
 
 signal spawn_object(explosion)
 
 const Explosion = preload("res://Entities/Bazooka/Missile/Explosion.tscn")
 
-export var max_speed: int = 600
-export var acceleration: int = 280
-export var steer_force: int = 280
+onready var path_follow = $PathFollow2D
+onready var missile = $PathFollow2D/Missile
 
-# Aim a bit after the target on the ground
-export (Vector2) var ground_offset = Vector2(20, 62)
-export (Vector2) var air_offset = Vector2.ZERO
+export var speed: int = 200
+export var randomness_x: int = 40
+export var ground_offset_y: int = 16
 
 var target: Node2D
 onready var target_position: Vector2 = target.global_position
 var target_groups: Array = ["enemies"]
-var velocity := Vector2.ZERO
 var freed := false
 
 # Must be set by the bazooka
 var damage
 
+# Only used for debug purposes
+var origin: Vector2
+var control: Vector2
+var dest: Vector2
+var after_dest: Vector2
+
 func _init() -> void:
 	name = "Missile"
 
 func _ready() -> void:
-	$Indicator.visible = DebugService.level == DebugService.LogLevel.SILLY
-	velocity = Vector2(acceleration, 0).rotated(rotation).clamped(max_speed)
+	origin = Vector2.ZERO
+	#warning-ignore:integer_division
+	control = Vector2(speed/2, 0).rotated(deg2rad(-20))
+	dest = _get_dest()
+	
+	curve = Curve2D.new()
+	curve.add_point(origin, Vector2.ZERO, control)
+	curve.add_point(dest)
+	
+	# In case the missile doesn't hit, we still want it to continue
+	# so we calculate the tangeant at the last point and continue on
+	# that line
+	var penultimate: Vector2 = curve.interpolate(0, 0.99)
+	var direction: Vector2 = dest - penultimate
+	after_dest = direction.normalized() * 1000
+	curve.add_point(dest + after_dest)
+
+
+# The target is moving, so we want to calculate how much time the
+# missile will take to reach the destination and where the target
+# will be at that time.
+# We don't want this feature for ground units (because enemies are
+# almost always stopped by our own units - which we don't wanna kill
+func _get_dest(steps: int = 3) -> Vector2:
+	#warning-ignore:integer_division
+	var offset = Vector2(randi() % randomness_x - randomness_x / 2, 0)
+	if not target.spawn_in_air:
+		offset.y = ground_offset_y
+		return target_position + offset - global_position
+	
+	var future_target_pos = target_position
+	for _i in range(steps):
+		var dist = global_position.distance_to(future_target_pos)
+		var time = dist / speed
+		future_target_pos = target_position + target.velocity * time
+	
+	return future_target_pos + offset - global_position
+
 
 func _physics_process(delta: float) -> void:
-	$Indicator.global_position = offset_target_pos()
-
-	velocity += Vector2(acceleration, 0).rotated(rotation) * delta
-	velocity += seek() * delta
-	velocity = velocity.clamped(max_speed)
-	rotation = velocity.angle()
-	position += velocity * delta
-
-
-func offset_target_pos() -> Vector2:
-	if target:
-		var offset = air_offset if target.spawn_in_air else ground_offset
-		return target.global_position + offset
-	else:
-		return target_position
-
-func seek():
-	var desired = (offset_target_pos() - global_position).normalized() * acceleration
-	return (desired - velocity).normalized() * steer_force
+	path_follow.offset += speed * delta
 
 
 func explode() -> void:
 	var explosion = Explosion.instance()
-	explosion.global_position = global_position
+	explosion.global_position = missile.global_position
 	explosion.damage = damage
 	emit_signal("spawn_object", explosion)
 
@@ -66,12 +88,12 @@ func prepare_free() -> void:
 	if freed:
 		return
 
-	var particles = $Particles2D
+	var particles = $PathFollow2D/Missile/Particles2D
 	particles.global_position = global_position
 	particles.emitting = false
 	particles.should_be_removed = true
 
-	call_deferred("remove_child", particles)
+	missile.call_deferred("remove_child", particles)
 	get_tree().root.call_deferred("add_child", particles)
 	
 	# Calling queue_free now will cause particles to not exist anymore
@@ -79,6 +101,15 @@ func prepare_free() -> void:
 	call_deferred("queue_free")
 	DebugService.silly("%s freed" % name)
 	freed = true
+
+
+func _draw() -> void:
+	if DebugService.level == DebugService.LogLevel.SILLY:
+		draw_polyline(curve.get_baked_points(), Color.blue, 2.0)
+		draw_circle(origin, 5.0, Color.red)
+		draw_circle(control, 5.0, Color.violet)
+		draw_circle(dest, 5.0, Color.red)
+		draw_circle(after_dest, 5.0, Color.pink)
 
 
 func _on_Missile_body_entered(body: PhysicsBody2D) -> void:
@@ -89,4 +120,5 @@ func _on_Missile_body_entered(body: PhysicsBody2D) -> void:
 
 func _on_VisibilityNotifier2D_screen_exited():
 	if not freed:
+		DebugService.debug("%s disappeared from screen." % name)
 		prepare_free()

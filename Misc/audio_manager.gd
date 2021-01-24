@@ -20,6 +20,7 @@ onready var effects := {
 
 onready var base_volumes = _get_base_volumes()
 onready var base_music_volume = $MusicPlayer.volume_db
+onready var base_menu_volume = $MenuPlayer.volume_db
 
 
 func _ready() -> void:
@@ -36,6 +37,13 @@ func play_music() -> void:
 func stop_music() -> void:
 	$MusicPlayer.stop()
 
+func play_menu() -> void:
+	var player = $MenuPlayer
+	if not player.playing:
+		player.play()
+
+func stop_menu() -> void:
+	$MenuPlayer.stop()
 
 func play_effect(name: String) -> void:
 	if not effects.has(name):
@@ -95,6 +103,7 @@ func save_volumes() -> void:
 func set_music_volume(value: float) -> void:
 	music_volume = value
 	$MusicPlayer.volume_db = _volume_percent_as_db(base_music_volume, value)
+	$MenuPlayer.volume_db = _volume_percent_as_db(base_menu_volume, value)
 	save_volumes()
 
 

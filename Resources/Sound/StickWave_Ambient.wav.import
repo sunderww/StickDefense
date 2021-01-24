@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/StickWave_Ambient.wav-16f20b79d52e83dc3d71bd18dafa1267.sample"
+
+[deps]
+
+source_file="res://Resources/Sound/StickWave_Ambient.wav"
+dest_files=[ "res://.import/StickWave_Ambient.wav-16f20b79d52e83dc3d71bd18dafa1267.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

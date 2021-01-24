@@ -15,6 +15,8 @@ var score_info: Dictionary
 var disable_buttons: bool = false
 
 func _ready() -> void:
+	AudioManager.play_menu()
+	
 	score_info = {
 		"datetime": OS.get_datetime(),
 		"score": PlayerVariables.score,

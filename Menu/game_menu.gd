@@ -5,6 +5,11 @@ const ScoreScene = "res://Menu/HighScores.tscn"
 const CreditsScene = "res://Menu/Credits.tscn"
 const SettingsScene = "res://Menu/Settings.tscn"
 
+
+func _ready() -> void:
+	AudioManager.play_menu()
+
+
 func _on_PlayButton_pressed():
 	if button_pressed():
 		_animate_scene_end(MainScene)

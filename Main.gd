@@ -17,6 +17,7 @@ var enemy_count: int
 
 func _ready() -> void:
 	PlayerVariables.reset()
+	AudioManager.stop_menu()
 	AudioManager.play_music()
 	yield(animate_start(), "completed")
 	start_next_wave()

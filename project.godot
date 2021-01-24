@@ -86,7 +86,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="StickDefense"
+config/name="StickWave"
 run/main_scene="res://Menu/GameMenu.tscn"
 config/icon="res://icon.png"
 

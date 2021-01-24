@@ -129,6 +129,9 @@ func die() -> void:
 		var dying = DyingScene.instance()
 		dying.global_position = global_position
 		emit_signal("spawn_object", dying)
+		if is_enemy:
+			dying.coin_gain = coin_gain
+
 	
 	if is_enemy:
 		var score = score_gain / (lifetime/10.0 + 1)

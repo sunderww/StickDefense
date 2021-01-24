@@ -66,4 +66,7 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="CoinGainPos" type="Position2D" parent="."]
+position = Vector2( -0.328964, -50.4949 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

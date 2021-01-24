@@ -266,10 +266,10 @@ scale_curve = SubResource( 42 )
 collision_mask = 0
 script = ExtResource( 4 )
 entity_name = "Infantry"
-life = 120.0
-damage = 30.0
+life = 150.0
+damage = 25.0
 MOVE_SPEED_PX = 3000
-bullet_damage = 20
+bullet_damage = 30
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 margin_left = -17.3203

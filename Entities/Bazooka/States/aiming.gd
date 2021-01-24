@@ -2,8 +2,8 @@ extends State
 
 const SHOOTING_PATH = "res://Entities/Bazooka/States/shooting.gd"
 
-# Between 0.5 and 2s for aiming
-var wait_time = randf() * 1.5 + 0.5
+# Between 1 and 2s for aiming
+var wait_time = randf() * 1.0 + 1
 
 func get_name():
 	return "aiming"

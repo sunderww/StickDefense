@@ -116,8 +116,9 @@ func _generate_subwave(available_enemies: Array, time_offset: float, intensity_p
 # contains one or more enemies
 func _generate_wave(level: int) -> Array:
 	var wave_duration: float = 5 * level + 10
-	var intensity: float = 3 * level * level + 15
+	var intensity: float = (3 + int(float(level) / 3.0)) * level * level + 15
 	var intensity_per_s: float = intensity / wave_duration
+	DebugService.info("Generating wave %d. Intensity %f in %fs (%f/s)" % [level, intensity, wave_duration, intensity_per_s])
 
 	var available_enemies = _get_available_enemies(level)
 	var wave: Array = [] # The wave to be returned

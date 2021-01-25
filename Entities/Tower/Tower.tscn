@@ -175,7 +175,7 @@ script = ExtResource( 1 )
 material = SubResource( 1 )
 position = Vector2( -47.0872, -135.466 )
 frames = SubResource( 2 )
-frame = 5
+frame = 3
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

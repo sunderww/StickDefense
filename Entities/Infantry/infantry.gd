@@ -40,6 +40,11 @@ func _physics_process(delta: float) -> void:
 			state.set_state(attacking)
 
 
+func _upgrade_stats(multiplier: int) -> void:
+	._upgrade_stats(multiplier)
+	bullet_damage += int(float(bullet_damage) * 0.2 * multiplier)
+
+
 func target_in_rifle_range() -> bool:
 	return target and global_position.distance_to(target.global_position) < SHOOT_RANGE_PX
 

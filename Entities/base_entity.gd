@@ -38,6 +38,11 @@ var is_dead: bool = false # to avoid calling die() multiple times
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if is_enemy:
+		# warning-ignore:integer_division
+		var multiplier = PlayerVariables.level / 10 
+		_upgrade_stats(multiplier)
+	
 	max_life = life
 	invincibility_time = spawn_invincibility_time
 
@@ -68,18 +73,17 @@ func _physics_process(delta: float) -> void:
 	velocity = move_and_slide(velocity)
 
 
-#func next_ally() -> Node2D:
-#	var group_name = "enemies" if is_enemy else "allies"
-#	var allies = get_tree().get_nodes_in_group(group_name)
-#
-#	var nearest = null
-#	for ally in allies:
-#		var is_next = ally.global_position.x < global_position if is_enemy else ally.global_position.x > global_position
-#		if not nearest or (is_next and \
-#		 ally.global_position.distance_to(global_position) < nearest.global_position.distance_to(global_position)):
-#			nearest = ally
-#
-#	return nearest
+# Enemy units should get stronger every 10 levels
+# to avoid having too much on screen
+# Multiplier is 0 untill level 10, then 1, 2 at level 20, ...
+func _upgrade_stats(multiplier: int) -> void:
+	life += life * 0.8 * multiplier
+	damage += damage * 0.2 * multiplier
+	MOVE_SPEED_PX += int(float(MOVE_SPEED_PX) * 0.05 * multiplier)
+	
+	coin_gain += int(round(float(coin_gain) * 0.5 * float(multiplier)))
+	score_gain += score_gain * multiplier
+
 
 func reload_closest_target() -> void:
 	target = closest_target()

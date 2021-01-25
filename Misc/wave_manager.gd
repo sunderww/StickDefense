@@ -30,6 +30,7 @@ class WaveItem:
 		resource_path = _resource_path
 
 
+# ======== Node code =========
 
 var elapsed_time: float = 0
 
@@ -63,6 +64,9 @@ func _spawn_item(item: WaveItem) -> void:
 	var enemy: BaseEntity = load(item.resource_path).instance()
 	emit_signal("spawn_enemy", enemy)
 
+
+# ======= GENERATION CODE ========
+
 var ENEMIES := [
 	# Enemy.new(path: String, lifetime: float, intensity: float, weight: int, min_lvl: int = 0)
 	Enemy.new("res://Entities/Swordsman/Swordsman.tscn", 3, 3, 20),
@@ -80,7 +84,7 @@ func _get_available_enemies(level: int) -> Array:
 	return available
 
 # return a list of WaveItems and a wait time
-func _generate_subwave(available_enemies: Array, time_offset: float, intensity_per_s: float, is_first: bool = false):
+func _generate_subwave(available_enemies: Array, time_offset: float, intensity_per_s: float, level: int, is_first: bool = false):
 	var enemies: Array = []
 	
 	var total_weight: int = 0
@@ -96,13 +100,17 @@ func _generate_subwave(available_enemies: Array, time_offset: float, intensity_p
 		var min_spawn = 2
 		spawn_count = randi() % (max_spawn - min_spawn + 1) + min_spawn
 	
+	# The stats of each unit doubles every 10 levels so that when you are at
+	# lvl 20 there isn't 1000 enemies but 100 stronger enemies or so...
+	# So we have to multiply the intensity
 	var intensity = 0
 	for _i in range(spawn_count):
 		var enemy: Enemy = _random_enemy(total_weight, available_enemies)
 		var spawn_time = time_offset + rand_range(0, 1) # Spawn randomly during one second
 
 		enemies.append(WaveItem.new(spawn_time, enemy.resource_path))
-		intensity += enemy.intensity_score
+		# warning-ignore:integer_division
+		intensity += enemy.intensity_score * (level / 10 + 1)
 
 	var duration: float = float(intensity) / intensity_per_s
 	var duration_multiplier: float = rand_range(0.9, 1.1)
@@ -116,7 +124,7 @@ func _generate_subwave(available_enemies: Array, time_offset: float, intensity_p
 # contains one or more enemies
 func _generate_wave(level: int) -> Array:
 	var wave_duration: float = 5 * level + 10
-	var intensity: float = (3 + int(float(level) / 3.0)) * level * level + 15
+	var intensity: float = (3 + int(float(level) / 5.0)) * level * level + 15
 	var intensity_per_s: float = intensity / wave_duration
 	DebugService.info("Generating wave %d. Intensity %f in %fs (%f/s)" % [level, intensity, wave_duration, intensity_per_s])
 
@@ -126,7 +134,7 @@ func _generate_wave(level: int) -> Array:
 	var time_offset: float = 0
 	var first: bool = true
 	while time_offset < wave_duration:
-		var subwave = _generate_subwave(available_enemies, time_offset, intensity_per_s, first)
+		var subwave = _generate_subwave(available_enemies, time_offset, intensity_per_s, level, first)
 		time_offset += subwave["duration"]
 		wave += subwave["enemies"]
 		first = false

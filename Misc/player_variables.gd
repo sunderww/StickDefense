@@ -12,14 +12,15 @@ var spawned: Dictionary = Dictionary()
 
 
 func level_cleared() -> void:
+	coin += level * 5
 #	coin_per_second += min(1.0, float(level) / 40.0)
-	DebugService.info("Level %d cleared ; cps is %f" % [level, coin_per_second])
+	DebugService.info("Level %d cleared ; gained %d coins" % [level, level * 5])
 	level += 1
 
 
 func reset() -> void:
 	coin_per_second = 1.0
-	coin = 20
+	coin = 25
 
 	score = 0
 	level = 0

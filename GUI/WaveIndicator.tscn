@@ -1,17 +1,22 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://GUI/DefaultTheme.tres" type="Theme" id=1]
 [ext_resource path="res://GUI/wave_indicator.gd" type="Script" id=2]
 [ext_resource path="res://Resources/manaspc.ttf" type="DynamicFontData" id=3]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 40
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "ScaleDown"
+[sub_resource type="DynamicFont" id=2]
+size = 30
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=3]
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -25,9 +30,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 1.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="Animation" id=1]
-resource_name = "ScaleUp"
+[sub_resource type="Animation" id=4]
 length = 2.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -41,22 +57,53 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 1.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "show_label2"
+} ]
+}
 
 [node name="WaveIndicator" type="Node2D"]
+scale = Vector2( 1e-05, 1e-05 )
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Wave 1999"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label2" type="Label" parent="."]
+visible = false
+margin_left = -300.0
+margin_top = 30.0568
+margin_right = 300.0
+margin_bottom = 70.0568
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Enemies are getting stronger !"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/ScaleDown = SubResource( 2 )
-anims/ScaleUp = SubResource( 1 )
+anims/ScaleDown = SubResource( 3 )
+anims/ScaleUp = SubResource( 4 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -19,9 +19,10 @@ func set_level(value: int) -> void:
 	level = value
 	label.text = "Wave %d" % level
 	label.visible = true
-
+	
+	$Label2.visible = level % 10 == 0
+	
 	animation_player.play("ScaleUp")
-
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

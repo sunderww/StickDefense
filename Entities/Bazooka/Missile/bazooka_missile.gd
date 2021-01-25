@@ -8,8 +8,8 @@ onready var path_follow = $PathFollow2D
 onready var missile = $PathFollow2D/Missile
 
 export var speed: int = 200
-export var randomness_x: int = 40
-export var ground_offset_y: int = 16
+export var randomness: Vector2 = Vector2(50, 20)
+export var ground_offset_y: int = 20
 
 var target: Node2D
 onready var target_position: Vector2 = target.global_position
@@ -30,9 +30,10 @@ func _init() -> void:
 
 func _ready() -> void:
 	origin = Vector2.ZERO
-	#warning-ignore:integer_division
-	control = Vector2(speed/2, 0).rotated(deg2rad(-20))
 	dest = _get_dest()
+	var direction := Vector2(speed, 0).rotated(deg2rad(-20)).normalized()
+	control = direction * origin.distance_to(dest) / 2.0
+	$Crosshair.position = dest
 	
 	curve = Curve2D.new()
 	curve.add_point(origin, Vector2.ZERO, control)
@@ -42,7 +43,7 @@ func _ready() -> void:
 	# so we calculate the tangeant at the last point and continue on
 	# that line
 	var penultimate: Vector2 = curve.interpolate(0, 0.99)
-	var direction: Vector2 = dest - penultimate
+	direction = dest - penultimate
 	after_dest = direction.normalized() * 1000
 	curve.add_point(dest + after_dest)
 
@@ -54,9 +55,11 @@ func _ready() -> void:
 # almost always stopped by our own units - which we don't wanna kill
 func _get_dest(steps: int = 3) -> Vector2:
 	#warning-ignore:integer_division
-	var offset = Vector2(randi() % randomness_x - randomness_x / 2, 0)
+	var x = randi() % int(randomness.x) - randomness.x / 2
+	var y = randi() % int(randomness.y) - randomness.y / 2
+	var offset = Vector2(x, y)
 	if not target.spawn_in_air:
-		offset.y = ground_offset_y
+		offset.y += ground_offset_y
 		return target_position + offset - global_position
 	
 	var future_target_pos = target_position

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Resources/Particles/Black smoke/blackSmoke04.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Particles/Black smoke/blackSmoke08.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Entities/Chopper/Missile/Missile.png" type="Texture" id=12]
 [ext_resource path="res://Resources/Particles/Black smoke/blackSmoke03.png" type="Texture" id=13]
 [ext_resource path="res://Entities/Bazooka/Missile/bazooka_missile.gd" type="Script" id=14]
+[ext_resource path="res://Resources/crosshair.png" type="Texture" id=15]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -121,9 +122,6 @@ frame_10/delay_sec = 0.0
 position = Vector2( -0.192629, -2.68022 )
 curve = SubResource( 1 )
 script = ExtResource( 14 )
-__meta__ = {
-"_edit_group_": true
-}
 speed = 300
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
@@ -138,7 +136,7 @@ collision_mask = 32
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="PathFollow2D/Missile"]
 frames = SubResource( 7 )
-frame = 4
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Missile"]
@@ -160,5 +158,10 @@ script = ExtResource( 7 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="PathFollow2D/Missile"]
 position = Vector2( 1.72564, 0.0986072 )
 scale = Vector2( 2.74536, 0.723899 )
+
+[node name="Crosshair" type="Sprite" parent="."]
+position = Vector2( 200, 20 )
+scale = Vector2( 0.385158, 0.385158 )
+texture = ExtResource( 15 )
 [connection signal="body_entered" from="PathFollow2D/Missile" to="." method="_on_Missile_body_entered"]
 [connection signal="screen_exited" from="PathFollow2D/Missile/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

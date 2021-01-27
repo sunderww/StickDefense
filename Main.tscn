@@ -179,7 +179,6 @@ script = ExtResource( 7 )
 
 [node name="WaveIndicator" parent="." instance=ExtResource( 8 )]
 position = Vector2( 510.802, 219.886 )
-scale = Vector2( 1e-05, 1e-05 )
 
 [node name="Tween" type="Tween" parent="."]
 

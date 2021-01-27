@@ -2,7 +2,7 @@ extends Node
 
 # Silly: puts debug on screen
 enum LogLevel { SILLY = 1, DEBUG, INFO, WARNING, ERROR }
-var level = LogLevel.SILLY
+var level = LogLevel.INFO
 
 func _level_as_str(lvl):
 	match lvl:

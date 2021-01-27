@@ -98,6 +98,10 @@ DebugService="*res://Misc/debug_service.gd"
 AudioManager="*res://Misc/AudioManager.tscn"
 ScoreService="*res://Misc/score_service.gd"
 
+[debug]
+
+settings/stdout/verbose_stdout=true
+
 [display]
 
 window/size/resizable=false

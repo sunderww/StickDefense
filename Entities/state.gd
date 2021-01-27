@@ -4,6 +4,10 @@ class_name State
 
 var parent = null
 
+# For debug purposes. The name should be set after using get_name
+func _init() -> void:
+	name = "BaseState"
+
 # Return the unique string name of the state. Must be overridden.
 func get_name() -> String:
 	assert(false)
@@ -11,6 +15,7 @@ func get_name() -> String:
 
 # Handle any transitions into this state. Subclasses should first chain to this method.
 func enter(_parent) -> void:
+	name = "State-%s-%s" % [_parent.name, get_name()]
 	parent = _parent
 	_animate()
 
@@ -40,8 +45,10 @@ func _process(_delta: float):
 func exit() -> void:
 	pass
 
+
 # Exit the current state, enter the new state.
 func set_state(state) -> void:
 	parent.state.exit()
 	parent.state = state
 	state.enter(parent)
+	queue_free()

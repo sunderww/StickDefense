@@ -52,6 +52,11 @@ func _ready() -> void:
 	
 	set_direction(is_enemy)
 
+
+func _exit_tree() -> void:
+	state.free()
+
+
 func _process(delta: float) -> void:
 	lifetime += delta
 	if invincibility_time > 0:

@@ -52,7 +52,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="Controls/CenterContainer/VBoxContainer" index="0"]
 margin_right = 387.0
 margin_bottom = 64.0
-rect_scale = Vector2( 1.08362, 1.08362 )
+rect_scale = Vector2( 1.05433, 1.05433 )
 custom_fonts/font = SubResource( 2 )
 text = "StickWave"
 align = 1

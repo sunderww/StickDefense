@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Menu/BaseScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/manaspc.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Menu/credits_text.gd" type="Script" id=3]
+[ext_resource path="res://godot_icon.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -14,7 +15,7 @@ font_data = ExtResource( 2 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Controls" index="2"]
 margin_left = 1.0
-margin_top = 123.0
+margin_top = 1.0
 margin_right = 1023.0
 margin_bottom = 598.0
 grow_horizontal = 2
@@ -23,7 +24,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
-bbcode_text = "[center]Development : [url=https://sunderww.itch.io/][color=black]SunderW[/color][/url]
+bbcode_text = "[center]
+Made with Godot Engine
+
+
+
+
+
+Development : [url=https://sunderww.itch.io/][color=black]SunderW[/color][/url]
 
 Art & Music : [url=https://sunderww.itch.io/][color=black]SunderW[/color][/url]
 
@@ -43,7 +51,14 @@ Thanks to all the people putting their artwork under CC license, but especially 
 
 [indent][url=https://opengameart.org/content/3-parallax-backgrounds][color=black]Mobile Game Graphics[/color] for the background buildings[/url][/indent]
 [/center]"
-text = "Development : SunderW
+text = "
+Made with Godot Engine
+
+
+
+
+
+Development : SunderW
 
 Art & Music : SunderW
 
@@ -67,3 +82,8 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="godot_icon" type="Sprite" parent="." index="3"]
+position = Vector2( 513.979, 92.8598 )
+scale = Vector2( 0.499823, 0.499823 )
+texture = ExtResource( 4 )

@@ -13,17 +13,17 @@ font_data = ExtResource( 4 )
 script = ExtResource( 2 )
 
 [node name="GridContainer" type="GridContainer" parent="Controls/CenterContainer" index="0"]
-margin_left = 251.0
-margin_top = 273.0
-margin_right = 772.0
-margin_bottom = 327.0
+margin_left = 161.0
+margin_top = 267.0
+margin_right = 895.0
+margin_bottom = 333.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 10
 custom_constants/hseparation = 40
-columns = 5
+columns = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -35,9 +35,19 @@ size_flags_vertical = 3
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 1 )
 
-[node name="ScoreLabel" type="Label" parent="Controls/CenterContainer/GridContainer" index="1"]
+[node name="WaveLabel" type="Label" parent="Controls/CenterContainer/GridContainer" index="1"]
 margin_left = 40.0
-margin_right = 135.0
+margin_right = 116.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 3 )
+custom_fonts/font = SubResource( 1 )
+text = "Wave"
+
+[node name="ScoreLabel" type="Label" parent="Controls/CenterContainer/GridContainer" index="2"]
+margin_left = 156.0
+margin_right = 251.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -45,9 +55,9 @@ theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 1 )
 text = "Score"
 
-[node name="KilledLabel" type="Label" parent="Controls/CenterContainer/GridContainer" index="2"]
-margin_left = 175.0
-margin_right = 289.0
+[node name="KilledLabel" type="Label" parent="Controls/CenterContainer/GridContainer" index="3"]
+margin_left = 291.0
+margin_right = 405.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -55,9 +65,9 @@ theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 1 )
 text = "Killed"
 
-[node name="LostLabel" type="Label" parent="Controls/CenterContainer/GridContainer" index="3"]
-margin_left = 329.0
-margin_right = 405.0
+[node name="LostLabel" type="Label" parent="Controls/CenterContainer/GridContainer" index="4"]
+margin_left = 445.0
+margin_right = 521.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -65,9 +75,19 @@ theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 1 )
 text = "Lost"
 
-[node name="DateLabel" type="Label" parent="Controls/CenterContainer/GridContainer" index="4"]
-margin_left = 445.0
-margin_right = 521.0
+[node name="RatioLabel" type="Label" parent="Controls/CenterContainer/GridContainer" index="5"]
+margin_left = 561.0
+margin_right = 618.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 3 )
+custom_fonts/font = SubResource( 1 )
+text = "K/D"
+
+[node name="DateLabel" type="Label" parent="Controls/CenterContainer/GridContainer" index="6"]
+margin_left = 658.0
+margin_right = 734.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -75,45 +95,65 @@ theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 1 )
 text = "Date"
 
-[node name="PositionLabel2" type="Label" parent="Controls/CenterContainer/GridContainer" index="5"]
+[node name="PositionLabel2" type="Label" parent="Controls/CenterContainer/GridContainer" index="7"]
 margin_top = 38.0
-margin_bottom = 54.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 3 )
 
-[node name="ScoreLabel2" type="Label" parent="Controls/CenterContainer/GridContainer" index="6"]
+[node name="WaveLabel2" type="Label" parent="Controls/CenterContainer/GridContainer" index="8"]
 margin_left = 40.0
 margin_top = 38.0
-margin_right = 135.0
-margin_bottom = 54.0
+margin_right = 116.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 3 )
+custom_fonts/font = SubResource( 1 )
 
-[node name="KilledLabel2" type="Label" parent="Controls/CenterContainer/GridContainer" index="7"]
-margin_left = 175.0
+[node name="ScoreLabel2" type="Label" parent="Controls/CenterContainer/GridContainer" index="9"]
+margin_left = 156.0
 margin_top = 38.0
-margin_right = 289.0
-margin_bottom = 54.0
+margin_right = 251.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 3 )
 
-[node name="LostLabel2" type="Label" parent="Controls/CenterContainer/GridContainer" index="8"]
-margin_left = 329.0
+[node name="KilledLabel2" type="Label" parent="Controls/CenterContainer/GridContainer" index="10"]
+margin_left = 291.0
 margin_top = 38.0
 margin_right = 405.0
-margin_bottom = 54.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 3 )
 
-[node name="DateLabel2" type="Label" parent="Controls/CenterContainer/GridContainer" index="9"]
+[node name="LostLabel2" type="Label" parent="Controls/CenterContainer/GridContainer" index="11"]
 margin_left = 445.0
 margin_top = 38.0
 margin_right = 521.0
-margin_bottom = 54.0
+margin_bottom = 66.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 3 )
+
+[node name="RatioLabel2" type="Label" parent="Controls/CenterContainer/GridContainer" index="12"]
+margin_left = 561.0
+margin_top = 38.0
+margin_right = 618.0
+margin_bottom = 66.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 3 )
+custom_fonts/font = SubResource( 1 )
+
+[node name="DateLabel2" type="Label" parent="Controls/CenterContainer/GridContainer" index="13"]
+margin_left = 658.0
+margin_top = 38.0
+margin_right = 734.0
+margin_bottom = 66.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 3 )

@@ -4,15 +4,15 @@
 [ext_resource path="res://Resources/manaspc.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Menu/game_menu.gd" type="Script" id=7]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 64
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxEmpty" id=3]
+[sub_resource type="StyleBoxEmpty" id=2]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 40
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -52,8 +52,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="Controls/CenterContainer/VBoxContainer" index="0"]
 margin_right = 387.0
 margin_bottom = 64.0
-rect_scale = Vector2( 1.05433, 1.05433 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "StickWave"
 align = 1
 
@@ -61,7 +60,7 @@ align = 1
 margin_top = 68.0
 margin_right = 387.0
 margin_bottom = 152.0
-custom_styles/separator = SubResource( 3 )
+custom_styles/separator = SubResource( 2 )
 custom_constants/separation = 84
 
 [node name="PlayButton" type="Button" parent="Controls/CenterContainer/VBoxContainer" index="2"]
@@ -70,7 +69,7 @@ margin_right = 387.0
 margin_bottom = 202.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Play"
 flat = true
 align = 0
@@ -81,7 +80,7 @@ margin_right = 387.0
 margin_bottom = 252.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Scores"
 flat = true
 align = 0
@@ -92,7 +91,7 @@ margin_right = 387.0
 margin_bottom = 302.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Options"
 flat = true
 align = 0
@@ -103,7 +102,7 @@ margin_right = 387.0
 margin_bottom = 352.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Credits"
 flat = true
 align = 0
@@ -114,7 +113,7 @@ margin_right = 387.0
 margin_bottom = 402.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Exit"
 flat = true
 align = 0

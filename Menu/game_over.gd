@@ -7,6 +7,7 @@ const ScoreScene = "res://Menu/HighScores.tscn"
 
 
 onready var score_label := $Controls/CenterContainer/VBoxContainer/ScoreLabel
+onready var wave_label := $Controls/CenterContainer/VBoxContainer/WaveLabel
 onready var killed_label := $Controls/CenterContainer/VBoxContainer/KilledLabel
 onready var lost_label := $Controls/CenterContainer/VBoxContainer/LostLabel
 onready var tween := $Tween
@@ -44,20 +45,23 @@ func _save_score() -> void:
 
 
 func _set_labels() -> void:
-	score_label.text = "%s %d" % [score_label.text, PlayerVariables.score]
+	score_label.text = "%s %d" % [score_label.text, score_info["score"]]
+	
+	var level = score_info["level"] - 1
+	wave_label.text = "You lasted %d wave%s" % [level, "s" if level > 1 else ""]
 	
 	var comma := ""
 	var text := "Killed: "
-	for unit_name in PlayerVariables.killed.keys():
-		var number = PlayerVariables.killed[unit_name]
+	for unit_name in score_info["killed"].keys():
+		var number = score_info["killed"][unit_name]
 		text += "%s%d %s" % [comma, number, unit_name]
 		comma = ", "
 	killed_label.text = text
 	
 	comma = ""
 	text = "Lost: "
-	for unit_name in PlayerVariables.spawned.keys():
-		var number = PlayerVariables.spawned[unit_name]
+	for unit_name in score_info["spawned"].keys():
+		var number = score_info["spawned"][unit_name]
 		text += "%s%d %s" % [comma, number, unit_name]
 		comma = ", "
 	lost_label.text = text

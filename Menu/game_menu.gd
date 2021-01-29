@@ -34,4 +34,5 @@ func _on_ExitButton_pressed():
 	if button_pressed():
 		yield(AudioManager, "effect_finished")
 		get_tree().quit()
+		disable_buttons = false
 
